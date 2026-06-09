@@ -1,0 +1,119 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import DuotonePhoto from "../components/DuotonePhoto.astro";
+import Callout from "../components/Callout.astro";
+import MediaBand from "../components/MediaBand.astro";
+
+const entries = (await getCollection("team")).sort((a, b) => a.data.order - b.data.order);
+const team = await Promise.all(
+  entries.map(async (t) => ({ ...t.data, Content: (await render(t)).Content }))
+);
+---
+<BaseLayout
+  title="Our Story"
+  description="Second Chances wasn't built by people looking in. It was built by someone who lived it, Peter Kamau Muthui's journey from care leaver to care reformer."
+  current="our-story"
+>
+  <Hero image="https://picsum.photos/seed/sc-window/1900/1200" alt="Light through a window in a quiet room">
+    <h1 class="display">It was built by someone who&nbsp;<em>lived it.</em></h1>
+    <p class="lead">Second Chances was not built by people looking in. Its story begins with a boy in a Nairobi children's home, waiting for a family that never came.</p>
+  </Hero>
+
+  <section class="section">
+    <div class="wrap split split--lead split--center">
+      <div>
+        <SectionHead title="Thirty children. Two house&nbsp;mothers. One&nbsp;long&nbsp;wait.">
+          <p class="lead">After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty, one of thirty children under the care of two house mothers working in shifts.</p>
+        </SectionHead>
+        <p>He spent years hoping, as so many children in care do, that one day someone would come to take him home to a family.</p>
+      </div>
+      <DuotonePhoto src="https://picsum.photos/seed/sc-corridor/950/1180" alt="A quiet corridor" />
+    </div>
+  </section>
+
+  <MediaBand image="https://picsum.photos/seed/sc-empty/1900/1100" alt="An empty doorway at dusk" by="Peter Kamau Muthui, Founder">
+    I watched my friend John leave for a foster family. I told myself, <em>I will be next.</em> I was not next.
+  </MediaBand>
+
+  <section class="section band">
+    <div class="wrap split split--lead split--center">
+      <DuotonePhoto src="https://picsum.photos/seed/sc-desk/950/1180" alt="A desk by a window" />
+      <div>
+        <SectionHead title="He went back to the place that&nbsp;raised&nbsp;him.">
+          <p class="lead">That pain never left him, but instead of letting it harden him, it directed him. Peter returned to the very same children's home, first as a social worker, then as a social programmes manager.</p>
+        </SectionHead>
+        <p>For a decade he worked from inside the system he had survived, becoming a respected, globally recognised champion of care reform rooted in local realities. He went on to co-found <strong>Child in Family Focus Kenya (CFFK)</strong>, one of the country's most reputable organisations championing family-based care for orphaned and vulnerable children.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap measure">
+      <SectionHead title="The gap that wouldn't&nbsp;close.">
+        <p class="lead">Even from within strong care-reform work, a gap remained. Young people kept arriving, discontinued from sponsorship, aged out, or abandoned by orphanages, having lost everything from shelter to education, with nowhere left to turn.</p>
+      </SectionHead>
+      <Callout>When Peter extended a second chance to young people discontinued from care, he was not offering charity. He was offering what he once needed himself.</Callout>
+      <p>And so Second Chances was born, not as an institution, but as a promise: that no young person leaving care would have to do it alone.</p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split">
+      <div>
+        <SectionHead title="Our mission.">
+          <p class="lead">To walk alongside young people leaving institutional care across Kenya, meeting them at the most vulnerable moment with healing, education, justice, and a community that will not disappear.</p>
+        </SectionHead>
+      </div>
+      <div>
+        <SectionHead title="Our vision.">
+          <p class="lead">A Kenya where leaving care is not the same as being left behind, where every care leaver has a bridge to their full potential, and a second chance whenever they need one.</p>
+        </SectionHead>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap measure">
+      <SectionHead title="A message from the&nbsp;founder." />
+      <Callout variant="teal">I have seen what happens when someone simply refuses to give up on a young person. I have watched lives turn quietly, completely, in the direction of something better.</Callout>
+      <p>That transformation is not complicated. It does not require perfection. It requires presence: someone looking a young person in the eye and saying <em>I am not going anywhere.</em></p>
+      <p>There are no chances in a family; family will always be there. We are giving second chances to life. That is what we will always be. To every young person reading this: you were never meant to do this alone. And now, you don't have to.</p>
+      <p style="margin-top:1.6rem;font-family:var(--serif);font-style:italic;font-size:1.4rem">Peter Kamau Muthui</p>
+      <p class="small" style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.16em;color:var(--ink-faint);margin-top:-.6rem">Founder, Second Chances · Executive Director, Child in Family Focus Kenya</p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <SectionHead title="The people who&nbsp;stay.">
+        <p class="lead">A team that leads with lived experience, and a board that holds us accountable. <span class="small muted">(Placeholder profiles, to be replaced with the real team.)</span></p>
+      </SectionHead>
+      <div class="team">
+        {team.map((m) => {
+          const Bio = m.Content;
+          return (
+            <article class="member">
+              {m.photo && <DuotonePhoto src={m.photo} alt={`${m.name}, portrait`} shape="square" variant={m.photoVariant} />}
+              <h3>{m.name}</h3>
+              <p class="role">{m.role}</p>
+              <Bio />
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-ink center closing-cta">
+    <div class="wrap measure">
+      <p class="display">This is a story still being&nbsp;written. Yours can be part&nbsp;of&nbsp;it.</p>
+      <div class="hero-cta closing-cta-buttons">
+        <a class="btn btn-help btn-lg" href="/get-help">Get support</a>
+        <a class="btn btn-amber btn-lg" href="/get-involved#donate">Stand with us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+// Full-bleed dark image divider with a single line over it (the "light in the
+// dark" beat). Quote goes in the slot; `by` is the attribution caption.
+interface Props { image: string; alt: string; by?: string }
+const { image, alt, by } = Astro.props;
+---
+<section class="media-band">
+  <img src={image} alt={alt} loading="lazy" />
+  <div class="wrap">
+    <p class="display"><slot /></p>
+    {by && <p class="by">{by}</p>}
+  </div>
+</section>

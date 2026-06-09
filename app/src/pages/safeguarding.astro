@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import DuotonePhoto from "../components/DuotonePhoto.astro";
+import { contact } from "../config";
+---
+<BaseLayout
+  title="Safeguarding"
+  description="Our commitment to the safety and dignity of every young person: principles, code of conduct, how to report a concern, and how we handle your data."
+>
+  <Hero variant="soft" image="https://picsum.photos/seed/sc-shelter/1900/1100" alt="A sheltering structure in soft light">
+    <h1 class="display">Safety is not a policy. It's a&nbsp;<em>promise.</em></h1>
+    <p class="lead">Second Chances exists in part because young people were harmed inside the very places meant to protect them. We hold ourselves to a higher standard, and we are transparent about it.</p>
+  </Hero>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead title="Our safeguarding&nbsp;principles.">
+        <p class="lead">These commitments guide every interaction, every member of staff, and every volunteer and partner who works with us.</p>
+      </SectionHead>
+      <div class="reassure" style="margin-top:1.5rem">
+        <div><h4>The young person comes first</h4><p>The safety, dignity, and wishes of the young person guide every decision. We do not act over their heads.</p></div>
+        <div><h4>Believe, and act</h4><p>When someone tells us they have been harmed, we listen, we believe, and we respond, sensitively and without delay.</p></div>
+        <div><h4>Consent and control</h4><p>Nothing about a young person is shared or actioned without their informed consent, except where there is a serious risk of harm.</p></div>
+        <div><h4>Clear boundaries</h4><p>Every member of staff and volunteer signs and works within a code of conduct that protects young people from harm.</p></div>
+        <div><h4>Vetted people</h4><p>Those who work directly with young people are screened, referenced, and trained before they begin.</p></div>
+        <div><h4>Always accountable</h4><p>Concerns are recorded, reviewed, and escalated to the authorities where required. We hold ourselves open to scrutiny.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split split--lead split--center">
+      <div>
+        <SectionHead title="Report a&nbsp;concern.">
+          <p class="lead">If you are worried about the safety of a young person, or about the conduct of anyone connected to Second Chances, please tell us. You can do so confidentially, and anonymously if you prefer.</p>
+        </SectionHead>
+        <p>If someone is in immediate danger, contact local emergency services first.</p>
+        <div class="paybill" style="border-style:solid;border-color:var(--amber)">
+          <div><div class="k">Safeguarding line</div><div class="v" style="font-size:1.25rem">{contact.safeguardingPhone}</div></div>
+          <div><div class="k">Confidential email</div><div class="v" style="font-size:1.1rem">{contact.safeguardingEmail}</div></div>
+        </div>
+        <p style="margin-top:1.4rem"><a class="btn btn-help" href="/get-help">Report confidentially</a></p>
+      </div>
+      <DuotonePhoto src="https://picsum.photos/seed/sc-safe/950/1180" alt="A safe, sheltered space" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap measure">
+      <SectionHead title="What happens after you&nbsp;tell&nbsp;us." />
+      <ol class="steps" style="margin-top:1rem">
+        <li><span><b>We take it seriously, immediately.</b> Every concern is logged and reviewed by our designated safeguarding lead.</span></li>
+        <li><span><b>We keep you informed.</b> We explain what we can do, what we can't, and what happens next, no surprises.</span></li>
+        <li><span><b>We act to protect.</b> Where there is risk, we take steps to keep the young person safe and, where required, involve the relevant authorities.</span></li>
+        <li><span><b>We follow through.</b> We stay with the situation until it is resolved, and we review what we can learn.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap measure">
+      <SectionHead title="Your data, handled with&nbsp;care.">
+        <p class="lead">Many people share painful, private things with us. We treat that trust as sacred.</p>
+      </SectionHead>
+      <div class="faq">
+        <details>
+          <summary>What do you do with what I share?</summary>
+          <p>We store it securely and use it only to support you. We follow Kenya's Data Protection Act (2019): your information is never sold, and never shared without your consent except where the law requires it to protect someone from harm.</p>
+        </details>
+        <details>
+          <summary>Can I stay anonymous?</summary>
+          <p>Yes. You can reach out, report a concern, or ask for help without giving your name. You decide how much to share, and when.</p>
+        </details>
+        <details>
+          <summary>Can I ask you to delete my information?</summary>
+          <p>Yes. You can ask to see what we hold about you, correct it, or have it deleted, at any time. Just contact us.</p>
+        </details>
+      </div>
+      <p class="small muted" style="margin-top:1.4rem">Full documents: Safeguarding and Child Protection Policy, Code of Conduct, Privacy and Data Protection Notice <span style="color:var(--ink-faint)">(to be linked).</span></p>
+    </div>
+  </section>
+
+  <section class="section band-ink center closing-cta">
+    <div class="wrap measure">
+      <p class="display">If something happened to you, it was never your&nbsp;fault, and it's never too&nbsp;late&nbsp;to&nbsp;tell.</p>
+      <div class="hero-cta closing-cta-buttons">
+        <a class="btn btn-help btn-lg" href="/get-help">Talk to someone safe</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

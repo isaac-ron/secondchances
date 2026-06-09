@@ -1,0 +1,6 @@
+---
+// Short emphatic statement set apart by scale and weight (no border-left).
+interface Props { variant?: "teal" | "amber"; class?: string }
+const { variant, class: cls = "" } = Astro.props;
+---
+<p class={`callout ${variant ?? ""} ${cls}`.replace(/\s+/g, " ").trim()}><slot /></p>

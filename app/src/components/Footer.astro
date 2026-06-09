@@ -1,0 +1,23 @@
+---
+import { footerColumns, site } from "../config";
+---
+<footer class="site-footer band-ink">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="wordmark foot-wordmark"><b>{site.name}</b><small>{site.tagline}</small></span>
+        <p>A second chance for young people leaving care across Kenya. You were never meant to do this alone.</p>
+      </div>
+      {footerColumns.map((col) => (
+        <div>
+          <h4>{col.heading}</h4>
+          {col.links.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+      ))}
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 {site.name} · A {site.parentOrg} initiative · <a href="/privacy">Privacy &amp; Data Protection</a> · <a href="/terms">Terms</a></span>
+      <a class="exit" href="#" data-exit>Leave this site →</a>
+    </div>
+  </div>
+</footer>

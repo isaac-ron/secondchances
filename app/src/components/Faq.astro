@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from "astro:content";
+
+const entries = (await getCollection("faqs")).sort((a, b) => a.data.order - b.data.order);
+const faqs = await Promise.all(
+  entries.map(async (f) => ({ question: f.data.question, Content: (await render(f)).Content }))
+);
+---
+<div class="faq">
+  {faqs.map((f) => {
+    const Answer = f.Content;
+    return (
+      <details>
+        <summary>{f.question}</summary>
+        <Answer />
+      </details>
+    );
+  })}
+</div>

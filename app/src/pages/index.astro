@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import Doors from "../components/Doors.astro";
+import DuotonePhoto from "../components/DuotonePhoto.astro";
+import Callout from "../components/Callout.astro";
+import MediaBand from "../components/MediaBand.astro";
+import PillarList from "../components/PillarList.astro";
+
+const featured = (await getCollection("stories")).find((s) => s.data.featured);
+---
+<BaseLayout
+  title="Home"
+  description="Second Chances walks alongside young people leaving or who have left institutional care across Kenya. You were never meant to do this alone."
+>
+  <Hero image="https://picsum.photos/seed/sc-threshold/1900/1200" alt="Light spilling through an open doorway">
+    <h1 class="display">You were never meant to&nbsp;do&nbsp;this <em>alone.</em></h1>
+    <p class="lead">Second Chances walks alongside young people who are leaving, or have already left, institutional care across Kenya. Whatever brought you here: you are not too late, you are not too far gone, and you are not too much.</p>
+    <div class="hero-cta">
+      <a class="btn btn-help btn-lg" href="/get-help">I need support</a>
+      <a class="btn btn-give btn-lg" href="/impact">I want to help</a>
+    </div>
+    <p class="hero-foot">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#8a8377" stroke-width="1.7" stroke-linejoin="round" /></svg>
+      This site is private. You can <a href="#" data-exit>leave quickly</a> at any time.
+    </p>
+  </Hero>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead title="Two ways through the&nbsp;same&nbsp;door.">
+        <p class="lead">We walk alongside two groups of young people, wherever you are on the journey, there is a way in.</p>
+      </SectionHead>
+      <Doors />
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap split split--lead split--center">
+      <DuotonePhoto src="https://picsum.photos/seed/sc-window/900/1100" alt="Quiet light through a window" />
+      <div class="measure">
+        <SectionHead title="Built from the&nbsp;inside." />
+        <p class="lead">It wasn't built by people looking in. After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty: one of thirty children under two house mothers, waiting, like so many do, for someone to come.</p>
+        <Callout variant="teal">No one came.</Callout>
+        <p>Years later he returned to that same home, first as a social worker, then as a social programmes manager, spending a decade working from inside the system he had survived. Second Chances is what he once needed himself.</p>
+        <a class="link-arrow" href="/our-story">Read Peter's story →</a>
+      </div>
+    </div>
+  </section>
+
+  <MediaBand image="https://picsum.photos/seed/sc-path/1700/1000" alt="A path leading toward the horizon" by="Peter Kamau Muthui, Founder">
+    It requires someone looking a young person in the eye and saying <em>I am not going anywhere.</em>
+  </MediaBand>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead title="The same grace we'd extend to&nbsp;our&nbsp;own&nbsp;children.">
+        <p class="lead">Because that is exactly what they are. Four ways we stand with every young person who comes to us.</p>
+      </SectionHead>
+      <PillarList />
+    </div>
+  </section>
+
+  {featured && (
+    <section class="section band">
+      <div class="wrap measure center">
+        <h2 class="title voice-title">In their words.</h2>
+        <blockquote class="voice">
+          {featured.data.quote}
+          <cite>{featured.data.attribution}</cite>
+        </blockquote>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap split split--center">
+      <div>
+        <SectionHead title="Rooted, accountable, and&nbsp;here&nbsp;to&nbsp;stay.">
+          <p class="lead">Second Chances grew out of Child in Family Focus Kenya (CFFK), a respected care-reform organisation championing family-based care. We take safeguarding seriously, and we are transparent about where support goes.</p>
+        </SectionHead>
+      </div>
+      <div>
+        <ul class="trust-points">
+          <li>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 12l2 2 4-4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span><b>Safeguarding-first.</b> A clear child-protection policy and a confidential way to report any concern.</span>
+          </li>
+          <li>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span><b>Transparent.</b> An honest breakdown of where every contribution goes. <a class="link-arrow inline" href="/impact">See our impact →</a></span>
+          </li>
+          <li>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0M3 20a7 7 0 0 1 14 0M18 8h4m-2-2v4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span><b>Lived experience.</b> Led by people who have walked this road, not looked in from outside.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-ink center closing-cta">
+    <div class="wrap measure">
+      <p class="display">To every young person reading this: you don't have to&nbsp;do&nbsp;this&nbsp;alone.</p>
+      <div class="hero-cta closing-cta-buttons">
+        <a class="btn btn-help btn-lg" href="/get-help">Get support</a>
+        <a class="btn btn-amber btn-lg" href="/get-involved#donate">Donate and bridge the gap</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

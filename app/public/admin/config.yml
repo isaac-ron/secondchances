@@ -1,0 +1,66 @@
+# Decap CMS configuration. Folder paths are relative to the repo root,
+# which contains this `app/` directory.
+backend:
+  name: github
+  repo: OWNER/second-chances # TODO: set to the real GitHub owner/repo
+  branch: main
+
+# Enables `npx decap-server` for local editing without GitHub auth.
+local_backend: true
+
+media_folder: "app/public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: pillars
+    label: Service Pillars
+    label_singular: Pillar
+    folder: "app/src/content/pillars"
+    create: true
+    slug: "{{anchor}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: order, label: Order, widget: number, value_type: int }
+      - { name: anchor, label: Anchor (URL id), widget: string }
+      - { name: summary, label: Summary (home page), widget: text }
+      - { name: bullets, label: Bullets, widget: list, required: false }
+      - { name: cta, label: CTA label, widget: string, default: "Talk to someone" }
+      - { name: photo, label: Photo URL, widget: string, required: false }
+      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "amber", "ink"], default: "teal" }
+      - { name: body, label: In-depth (How We Help), widget: markdown }
+
+  - name: stories
+    label: Stories of Change
+    label_singular: Story
+    folder: "app/src/content/stories"
+    create: true
+    fields:
+      - { name: quote, label: Quote, widget: text }
+      - { name: attribution, label: Attribution, widget: string }
+      - { name: tag, label: Tag (context), widget: string, required: false }
+      - { name: order, label: Order, widget: number, value_type: int, default: 0 }
+      - { name: featured, label: Featured (home voice), widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown, required: false }
+
+  - name: team
+    label: Team & Board
+    label_singular: Member
+    folder: "app/src/content/team"
+    create: true
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: role, label: Role, widget: string }
+      - { name: order, label: Order, widget: number, value_type: int, default: 0 }
+      - { name: photo, label: Photo URL, widget: string, required: false }
+      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "amber", "ink"], default: "teal" }
+      - { name: body, label: Short bio, widget: markdown }
+
+  - name: faqs
+    label: FAQs
+    label_singular: FAQ
+    folder: "app/src/content/faqs"
+    create: true
+    fields:
+      - { name: question, label: Question, widget: string }
+      - { name: order, label: Order, widget: number, value_type: int, default: 0 }
+      - { name: body, label: Answer, widget: markdown }

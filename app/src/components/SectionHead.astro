@@ -1,0 +1,10 @@
+---
+// Prominent section title (no kicker/accent-rule, per the design standard).
+// `title` may contain &nbsp; to control line breaks. Lead text goes in the slot.
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<div class="head">
+  <h2 class="title" set:html={title}></h2>
+  <slot />
+</div>

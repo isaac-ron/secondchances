@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import DuotonePhoto from "../components/DuotonePhoto.astro";
+import Funds from "../components/Funds.astro";
+
+// Rendered on-demand so the referral form's success state (?sent=refer) works.
+export const prerender = false;
+
+const sent = Astro.url.searchParams.get("sent") === "refer";
+---
+<BaseLayout
+  title="Get Involved"
+  description="Join us in bridging the gap. Give monthly or once via M-Pesa, card or bank; partner with us; volunteer your skills; or safely refer a young person."
+  current="get-involved"
+>
+  <Hero image="https://picsum.photos/seed/sc-bridge/1900/1200" alt="A bridge crossing toward open ground">
+    <h1 class="display">Join us in bridging the&nbsp;<em>gap.</em></h1>
+    <p class="lead">A donor is not buying a service, you are co-funding the dignity of a young person standing at the edge of an adult world. Here are four ways to stand with us.</p>
+    <div class="hero-cta">
+      <a class="btn btn-amber btn-lg" href="#donate">Donate</a>
+      <a class="btn btn-give btn-lg" href="#partnerships">Partner with us</a>
+    </div>
+  </Hero>
+
+  <section class="section" id="donate" style="scroll-margin-top:6rem">
+    <div class="wrap">
+      <SectionHead title="Give monthly, or&nbsp;give&nbsp;once.">
+        <p class="lead">Steady, recurring support is what lets us look a young person in the eye and promise we won't disappear. Every amount moves someone closer to stable ground.</p>
+      </SectionHead>
+
+      <h3 class="sub" style="font-family:var(--serif);text-transform:none;margin-top:1rem">Choose an amount</h3>
+      <div class="tiers">
+        <button class="tier" type="button"><b>KES 500</b><span>per month</span></button>
+        <button class="tier" type="button"><b>KES 1,500</b><span>per month</span></button>
+        <button class="tier" type="button"><b>KES 5,000</b><span>per month</span></button>
+        <button class="tier" type="button"><b>Other</b><span>you choose</span></button>
+      </div>
+
+      <div class="split" style="margin-top:3rem;align-items:start">
+        <div>
+          <h3 class="sub" style="font-family:var(--serif);text-transform:none">Pay with M-Pesa</h3>
+          <p class="muted">The simplest way to give from within Kenya.</p>
+          <div class="paybill">
+            <div><div class="k">Paybill</div><div class="v">000000</div></div>
+            <div><div class="k">Account</div><div class="v">SECONDCHANCES</div></div>
+          </div>
+          <p class="small muted" style="margin-top:1rem">Or tap below to give by card, PayPal, or bank transfer, in KES, USD, or GBP for our diaspora and international supporters. <span class="muted">(Card and M-Pesa checkout via Paystack.)</span></p>
+          <div class="hero-cta" style="margin-top:1rem">
+            <a class="btn btn-amber" href="#">Give by card / M-Pesa</a>
+            <a class="btn btn-give" href="#">Bank transfer details</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="sub" style="font-family:var(--serif);text-transform:none">Where your gift goes</h3>
+          <p class="muted">An honest split, see the full breakdown on <a href="/impact#reports" class="link-arrow inline">Our Impact →</a></p>
+          <Funds />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="partnerships" style="scroll-margin-top:6rem">
+    <div class="wrap">
+      <SectionHead title="Partner with&nbsp;us.">
+        <p class="lead">Corporates and foundations can fund a specific pillar of our work, and see exactly what it makes possible.</p>
+      </SectionHead>
+      <div class="channels">
+        <article class="channel">
+          <h3>Fund a pillar</h3>
+          <p>Underwrite counselling, education, or legal aid for a cohort of young people, with clear reporting on outcomes.</p>
+          <a class="link-arrow go" href="/contact">Discuss a partnership →</a>
+        </article>
+        <article class="channel">
+          <h3>Employer pathways</h3>
+          <p>Open internships, apprenticeships, or first jobs to care leavers ready for the world of work.</p>
+          <a class="link-arrow go" href="/contact">Offer opportunities →</a>
+        </article>
+        <article class="channel">
+          <h3>In-kind and pro bono</h3>
+          <p>Legal, counselling, training, or professional services contributed by your team.</p>
+          <a class="link-arrow go" href="#volunteer">See how to help →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="volunteer" style="scroll-margin-top:6rem">
+    <div class="wrap split split--lead split--center">
+      <div>
+        <SectionHead title="Give your skill, give your&nbsp;time.">
+          <p class="lead">Money is only one way in. Some of the most valuable things you can give are your expertise and your presence.</p>
+        </SectionHead>
+        <ul class="trust-points" style="margin-top:1.2rem">
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#287b7b" stroke-width="1.8" /><path d="M8 12l2.5 2.5L16 9" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg><span><b>Pro bono lawyers and counsellors</b> lend your practice to survivors and care leavers.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#287b7b" stroke-width="1.8" /><path d="M8 12l2.5 2.5L16 9" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg><span><b>Mentors</b> be the steady adult who stays.</span></li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#287b7b" stroke-width="1.8" /><path d="M8 12l2.5 2.5L16 9" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg><span><b>Trainers and coaches</b> share a skill that opens a door.</span></li>
+        </ul>
+        <p style="margin-top:1.6rem"><a class="btn btn-help" href="/contact">Offer your help</a></p>
+      </div>
+      <DuotonePhoto src="https://picsum.photos/seed/sc-mentor/950/1180" alt="Two people in conversation" />
+    </div>
+  </section>
+
+  <section class="section band" id="refer" style="scroll-margin-top:6rem">
+    <div class="wrap measure">
+      <SectionHead title="Know a young person who needs&nbsp;us?">
+        <p class="lead">If you're a children's home, social worker, teacher, or simply someone who cares, you can refer a young person leaving care, safely and confidentially.</p>
+      </SectionHead>
+      {sent ? (
+        <p class="callout teal">Thank you, we'll be in touch and handle this with care.</p>
+      ) : (
+        <form method="POST" action="/api/refer" style="display:grid;gap:1.3rem;margin-top:1rem">
+          <label style="display:grid;gap:.5rem">
+            <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Tell us about the situation <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+            <textarea name="message" rows="4" required placeholder="Who is the young person, and what's happening? Share only what's appropriate, we'll follow up sensitively." style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px;resize:vertical"></textarea>
+          </label>
+          <label style="display:grid;gap:.5rem">
+            <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">How can we reach you?</span>
+            <input type="text" name="contact" placeholder="Your name, role, and best contact" style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+          </label>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <button type="submit" class="btn btn-help btn-lg">Send referral</button>
+            <span class="small muted">Handled confidentially in line with our <a href="/safeguarding" style="color:var(--teal-deep)">safeguarding policy</a>.</span>
+          </div>
+        </form>
+      )}
+    </div>
+  </section>
+
+  <section class="section band-ink center closing-cta">
+    <div class="wrap measure">
+      <p class="display">Refuse to give up on a young person. Watch a life turn,&nbsp;completely.</p>
+      <div class="hero-cta closing-cta-buttons">
+        <a class="btn btn-amber btn-lg" href="#donate">Donate now</a>
+        <a class="btn btn-ghost btn-lg" href="/contact">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

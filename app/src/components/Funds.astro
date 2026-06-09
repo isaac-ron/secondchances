@@ -1,0 +1,12 @@
+---
+import { funds } from "../config";
+// Honest fund split. Bars animate in via /scripts/app.js (data-pct).
+---
+<div class="funds">
+  {funds.map((f) => (
+    <div class="fund">
+      <div class="fund-head"><span>{f.label}</span><b>{f.pct}%</b></div>
+      <div class="fund-track"><div class="fund-fill" data-pct={f.pct}></div></div>
+    </div>
+  ))}
+</div>

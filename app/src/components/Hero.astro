@@ -1,0 +1,15 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+  variant?: "cinematic" | "soft";
+  minHeight?: string;
+  eager?: boolean;
+}
+const { image, alt, variant = "cinematic", minHeight, eager = true } = Astro.props;
+const cls = variant === "soft" ? "hero hero--cinematic soft" : "hero hero--cinematic";
+---
+<section class={cls} style={minHeight ? `min-height:${minHeight}` : undefined}>
+  <img src={image} alt={alt} loading={eager ? "eager" : "lazy"} />
+  <div class="wrap"><slot /></div>
+</section>

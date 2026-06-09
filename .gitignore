@@ -1,0 +1,29 @@
+# ── Design mockup (superseded by the Astro app in app/) ──────────────
+# Kept on disk as the visual reference / impeccable audit target, but not
+# tracked in git. The production site lives in app/.
+/index.html
+/our-story.html
+/how-we-help.html
+/get-involved.html
+/impact.html
+/get-help.html
+/safeguarding.html
+/contact.html
+/threshold.html
+/threshold.css
+/assets/
+
+# ── dependencies / build output ──────────────────────────────────────
+node_modules/
+dist/
+.astro/
+.wrangler/
+
+# ── env & secrets ────────────────────────────────────────────────────
+.env
+.env.*
+.dev.vars
+
+# ── os ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

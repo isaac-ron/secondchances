@@ -1,0 +1,14 @@
+---
+// Quick-exit control. `float` renders the fixed mobile/scroll variant.
+// Behaviour (single-Esc, history replace) lives in /scripts/app.js.
+interface Props { float?: boolean }
+const { float = false } = Astro.props;
+const cls = float ? "exit exit-float" : "exit";
+const label = float ? "Leave" : "Leave site";
+---
+<a class={cls} href="#" data-exit aria-label="Leave this site quickly">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5M9 12h11M16 8l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  {label}
+</a>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+// Editorial list of the four pillars (no numbered markers, per the standard).
+// `linked` makes each row jump to its in-depth section on /how-we-help.
+interface Props { linked?: boolean }
+const { linked = false } = Astro.props;
+
+const pillars = (await getCollection("pillars")).sort((a, b) => a.data.order - b.data.order);
+---
+<div class="pillars">
+  {pillars.map((p) =>
+    linked ? (
+      <a class="pillar" href={`#${p.data.anchor}`}>
+        <h3>{p.data.title}</h3>
+        <p>{p.data.summary} <span class="link-arrow inline">Read more →</span></p>
+      </a>
+    ) : (
+      <div class="pillar">
+        <h3>{p.data.title}</h3>
+        <p>{p.data.summary}</p>
+      </div>
+    )
+  )}
+</div>

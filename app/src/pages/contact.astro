@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import { contact, site } from "../config";
+
+// Rendered on-demand so the form's success state (?sent=1) works.
+export const prerender = false;
+
+const sent = Astro.url.searchParams.get("sent") === "1";
+---
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Second Chances for partnership, media, volunteering, or general enquiries. If you're a young person who needs help, start at Get Help."
+>
+  <Hero variant="soft" minHeight="60vh" image="https://picsum.photos/seed/sc-reach/1900/1050" alt="An open landscape at dawn">
+    <h1 class="display">Let's&nbsp;<em>talk.</em></h1>
+    <p class="lead">For partnerships, media, volunteering, or general enquiries. If you're a young person who needs support, you're welcome here too, though <a href="/get-help" style="color:var(--amber);border-bottom:1px solid currentColor;text-decoration:none">Get Help</a> is the gentlest place to start.</p>
+  </Hero>
+
+  <section class="section">
+    <div class="wrap split" style="align-items:start">
+      <div>
+        <SectionHead title="Reach&nbsp;us." />
+        <div class="reassure" style="grid-template-columns:1fr;gap:1.6rem;margin-top:0">
+          <div>
+            <h4>General and partnerships</h4>
+            <p><a href={`mailto:${contact.generalEmail}`} style="color:var(--teal-deep)">{contact.generalEmail}</a><br />{contact.generalPhone}</p>
+          </div>
+          <div>
+            <h4>Safeguarding concerns</h4>
+            <p><a href="/safeguarding" style="color:var(--teal-deep)">Report a concern</a> · {contact.safeguardingEmail}<br />{contact.safeguardingPhone}</p>
+          </div>
+          <div>
+            <h4>Where to find us</h4>
+            <p>{contact.location}<br />A {site.parentOrg} initiative</p>
+          </div>
+          <div>
+            <h4>Follow along</h4>
+            <p>Instagram · X · LinkedIn · Facebook <span class="small muted">(@secondchances)</span></p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <SectionHead title="Send a&nbsp;message." />
+        {sent ? (
+          <p class="callout teal">Thank you, we'll reply within two working days.</p>
+        ) : (
+          <form method="POST" action="/api/contact" style="display:grid;gap:1.2rem;margin-top:0.5rem">
+            <label style="display:grid;gap:.5rem">
+              <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Your name</span>
+              <input type="text" name="name" placeholder="Name" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+            </label>
+            <label style="display:grid;gap:.5rem">
+              <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Email <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+              <input type="email" name="email" required placeholder="you@example.com" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+            </label>
+            <label style="display:grid;gap:.5rem">
+              <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">What's this about?</span>
+              <select name="topic" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px">
+                <option>General enquiry</option>
+                <option>Partnership or funding</option>
+                <option>Volunteering / pro bono</option>
+                <option>Media</option>
+                <option>Refer a young person</option>
+              </select>
+            </label>
+            <label style="display:grid;gap:.5rem">
+              <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Message <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+              <textarea name="message" rows="4" required placeholder="How can we help?" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px;resize:vertical"></textarea>
+            </label>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+              <button type="submit" class="btn btn-help btn-lg">Send message</button>
+              <span class="small muted">We aim to reply within two working days.</span>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

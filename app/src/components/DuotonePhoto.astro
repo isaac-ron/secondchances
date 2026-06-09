@@ -1,0 +1,18 @@
+---
+// Duotone-treated photo. Real imagery is mapped into the brand palette so it
+// never shows an identifying face at full fidelity. Mockup uses placeholders.
+interface Props {
+  src: string;
+  alt: string;
+  shape?: "tall" | "wide" | "square";
+  variant?: "teal" | "amber" | "ink";
+  eager?: boolean;
+  class?: string;
+  style?: string;
+}
+const { src, alt, shape = "tall", variant = "teal", eager = false, class: cls = "", style } = Astro.props;
+const v = variant === "teal" ? "" : variant;
+---
+<figure class={`photo ${shape} ${v} ${cls}`.replace(/\s+/g, " ").trim()} style={style}>
+  <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} />
+</figure>

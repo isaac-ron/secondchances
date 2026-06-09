@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import DuotonePhoto from "../components/DuotonePhoto.astro";
+import PillarList from "../components/PillarList.astro";
+import Faq from "../components/Faq.astro";
+
+const entries = (await getCollection("pillars")).sort((a, b) => a.data.order - b.data.order);
+const pillars = await Promise.all(
+  entries.map(async (p) => ({ ...p.data, Content: (await render(p)).Content }))
+);
+---
+<BaseLayout
+  title="How We Help"
+  description="Counselling and healing, education and vocational training, legal aid, and a peer community: the same grace we would extend to our own children."
+  current="how-we-help"
+>
+  <Hero variant="soft" image="https://picsum.photos/seed/sc-hands/1900/1150" alt="Open hands in warm light">
+    <h1 class="display">The same grace we'd extend to our&nbsp;<em>own children.</em></h1>
+    <p class="lead">Because that is exactly what they are. Four ways we stand with every young person who comes to us, only ever what you want, when you're ready.</p>
+    <div class="hero-cta">
+      <a class="btn btn-help btn-lg" href="/get-help">Talk to someone</a>
+    </div>
+  </Hero>
+
+  <section class="section" style="padding-block:clamp(2.5rem,5vw,3.5rem)">
+    <div class="wrap">
+      <PillarList linked />
+    </div>
+  </section>
+
+  {pillars.map((p, i) => {
+    const band = i % 2 === 0;
+    const photoLeft = i % 2 === 1;
+    const Body = p.Content;
+    return (
+      <section class={band ? "section band" : "section"} id={p.anchor} style="scroll-margin-top:6rem">
+        <div class="wrap split split--center">
+          <div>
+            <SectionHead title={p.title} />
+            <div class="lead"><Body /></div>
+            {p.bullets.length > 0 && (
+              <ul class="trust-points" style="margin-top:1.4rem">
+                {p.bullets.map((b) => (
+                  <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#287b7b" stroke-width="1.8" /><path d="M8 12l2.5 2.5L16 9" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p style="margin-top:1.6rem"><a class="btn btn-help" href="/get-help">{p.cta}</a></p>
+          </div>
+          {p.photo && (
+            <DuotonePhoto src={p.photo} alt={p.title} variant={p.photoVariant} style={photoLeft ? "order:-1" : undefined} />
+          )}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="section band">
+    <div class="wrap measure">
+      <SectionHead title="Questions you might be&nbsp;asking." />
+      <Faq />
+    </div>
+  </section>
+
+  <section class="section band-ink center closing-cta">
+    <div class="wrap measure">
+      <p class="display">Whatever you need, you don't have to&nbsp;ask&nbsp;for&nbsp;it&nbsp;perfectly.</p>
+      <div class="hero-cta closing-cta-buttons">
+        <a class="btn btn-help btn-lg" href="/get-help">Reach out now</a>
+        <a class="btn btn-ghost btn-lg" href="/resources">Browse resources</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
