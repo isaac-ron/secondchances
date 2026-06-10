@@ -27,3 +27,4 @@ dist/
 # ── os ───────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+institutional-mock.html
