@@ -49,15 +49,15 @@ const sent = Astro.url.searchParams.get("sent") === "1";
           <form method="POST" action="/api/contact" style="display:grid;gap:1.2rem;margin-top:0.5rem">
             <label style="display:grid;gap:.5rem">
               <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Your name</span>
-              <input type="text" name="name" placeholder="Name" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+              <input type="text" name="name" placeholder="Name" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px" />
             </label>
             <label style="display:grid;gap:.5rem">
               <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Email <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
-              <input type="email" name="email" required placeholder="you@example.com" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+              <input type="email" name="email" required placeholder="you@example.com" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px" />
             </label>
             <label style="display:grid;gap:.5rem">
               <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">What's this about?</span>
-              <select name="topic" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px">
+              <select name="topic" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px">
                 <option>General enquiry</option>
                 <option>Partnership or funding</option>
                 <option>Volunteering / pro bono</option>
@@ -67,7 +67,7 @@ const sent = Astro.url.searchParams.get("sent") === "1";
             </label>
             <label style="display:grid;gap:.5rem">
               <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Message <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
-              <textarea name="message" rows="4" required placeholder="How can we help?" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px;resize:vertical"></textarea>
+              <textarea name="message" rows="4" required placeholder="How can we help?" style="font:inherit;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px;resize:vertical"></textarea>
             </label>
             <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
               <button type="submit" class="btn btn-help btn-lg">Send message</button>

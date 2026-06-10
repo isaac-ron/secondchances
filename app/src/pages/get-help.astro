@@ -101,11 +101,11 @@ const sent = Astro.url.searchParams.get("sent") === "1";
         <form method="POST" action="/api/get-help" style="display:grid;gap:1.3rem">
           <label style="display:grid;gap:.5rem">
             <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">What's on your mind? <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
-            <textarea name="message" rows="4" required placeholder="You can write anything. Even just 'I don't know where to start' is enough." style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px;resize:vertical"></textarea>
+            <textarea name="message" rows="4" required placeholder="You can write anything. Even just 'I don't know where to start' is enough." style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px;resize:vertical"></textarea>
           </label>
           <label style="display:grid;gap:.5rem">
             <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">How can we reach you? <em style="font-style:italic;color:var(--ink-faint)">(optional, leave blank to stay anonymous)</em></span>
-            <input type="text" name="contact" placeholder="Phone, WhatsApp, or email, only if you want a reply" style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+            <input type="text" name="contact" placeholder="Phone, WhatsApp, or email, only if you want a reply" style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px" />
           </label>
           {sitekey && <div class="cf-turnstile" data-sitekey={sitekey}></div>}
           <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">

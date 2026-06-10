@@ -21,9 +21,9 @@
   --line-soft:  rgba(33,29,24,0.07);
 
   /* Type */
-  --display: "Oswald", "Arial Narrow", system-ui, sans-serif; /* ≈ Tungsten */
+  --display: "Inter", "Arial Narrow", system-ui, sans-serif; /* warm, human substitute for Tungsten */
   --serif:   "Spectral", Georgia, "Times New Roman", serif;
-  --ui:      "Oswald", system-ui, sans-serif;
+  --ui:      "Inter", system-ui, sans-serif;
 
   /* Measure & rhythm */
   --measure: 38rem;
@@ -122,7 +122,7 @@ p { margin: 0 0 1.1rem; }
   font-family: var(--ui); text-transform: uppercase; letter-spacing: 0.1em;
   font-weight: 600; font-size: 0.92rem;
   display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.85rem 1.5rem; border-radius: 2px; text-decoration: none;
+  padding: 0.85rem 1.5rem; border-radius: 4px; text-decoration: none;
   border: 1.5px solid transparent; transition: all .18s ease; line-height: 1;
 }
 .btn svg { width: 1.05em; height: 1.05em; }
@@ -181,7 +181,7 @@ p { margin: 0 0 1.1rem; }
   font-family: var(--ui); text-transform: uppercase; letter-spacing: 0.12em;
   font-size: 0.74rem; font-weight: 600;
   display: inline-flex; align-items: center; gap: 0.45rem;
-  padding: 0.5rem 0.8rem; border-radius: 2px;
+  padding: 0.5rem 0.8rem; border-radius: 4px;
   border: 1px solid rgba(180,60,40,0.35); color: #9d3b28; background: #fff;
 }
 .exit:hover { background: #9d3b28; color: #fff; border-color: #9d3b28; }
@@ -235,7 +235,7 @@ p { margin: 0 0 1.1rem; }
 /* ---------- two doors ---------- */
 .doors { display: grid; gap: 1.5rem; grid-template-columns: 1.15fr 0.85fr; }
 .door { padding: clamp(1.8rem,3vw,2.6rem); border: 1px solid var(--line);
-  background: var(--paper); position: relative; }
+  background: var(--paper); position: relative; border-radius: 8px; }
 .door--primary { background: var(--paper);
   box-shadow: 0 1px 0 var(--teal) inset, 0 0 0 0 transparent;
   border-top: 4px solid var(--teal); }
@@ -273,7 +273,7 @@ p { margin: 0 0 1.1rem; }
 
 /* ---------- story cards ---------- */
 .stories { display: grid; gap: 1.5rem; grid-template-columns: repeat(2,1fr); }
-.story { background: var(--paper); border: 1px solid var(--line); padding: 1.8rem; }
+.story { background: var(--paper); border: 1px solid var(--line); padding: 1.8rem; border-radius: 8px; }
 .story .tag { font-family: var(--ui); text-transform: uppercase;
   letter-spacing: 0.16em; font-size: 0.72rem; color: var(--teal-deep);
   margin-bottom: 0.9rem; }
@@ -289,7 +289,7 @@ p { margin: 0 0 1.1rem; }
 .channels { display: grid; gap: 1.25rem; grid-template-columns: repeat(3,1fr);
   margin-top: 2rem; }
 .channel { border: 1px solid var(--line); background: var(--paper); padding: 1.6rem;
-  display: flex; flex-direction: column; gap: 0.6rem; }
+  display: flex; flex-direction: column; gap: 0.6rem; border-radius: 8px; }
 .channel .ic { width: 2.2rem; height: 2.2rem; color: var(--teal-deep); }
 .channel h3 { font-family: var(--serif); text-transform: none; font-weight: 600;
   font-size: 1.25rem; }
@@ -367,7 +367,7 @@ p { margin: 0 0 1.1rem; }
    imagery sits inside the brand and never shows an identifying
    face at full fidelity. Placeholder photos used in the mockup.
    ============================================================ */
-.photo { position: relative; overflow: hidden; border-radius: 3px; margin: 0;
+.photo { position: relative; overflow: hidden; border-radius: 6px; margin: 0;
   background: linear-gradient(150deg, var(--teal) 0%, var(--paper-3) 100%); }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block;
   filter: grayscale(1) contrast(1.06) brightness(1.04); }
@@ -436,7 +436,7 @@ p { margin: 0 0 1.1rem; }
 /* ---------- donation tiers ---------- */
 .tiers { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); margin-top: 1.6rem; }
 .tier { border: 1px solid var(--line); padding: 1.4rem 1rem; background: var(--paper);
-  text-align: center; transition: border-color .18s ease, transform .18s ease; }
+  text-align: center; transition: border-color .18s ease, transform .18s ease; border-radius: 4px; }
 .tier:hover { border-color: var(--amber); transform: translateY(-2px); }
 .tier b { font-family: var(--display); font-weight: 700; font-size: 1.9rem; display: block;
   color: var(--ink); }
@@ -445,7 +445,7 @@ p { margin: 0 0 1.1rem; }
 /* ---------- M-Pesa-style callout ---------- */
 .paybill { display: inline-flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
   background: var(--paper); border: 1px dashed var(--teal); padding: 1.1rem 1.5rem;
-  border-radius: 3px; margin-top: 1.4rem; }
+  border-radius: 6px; margin-top: 1.4rem; }
 .paybill div { line-height: 1.2; }
 .paybill .k { font-family: var(--ui); text-transform: uppercase; letter-spacing: 0.14em;
   font-size: 0.7rem; color: var(--ink-faint); }

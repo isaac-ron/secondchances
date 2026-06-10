@@ -114,11 +114,11 @@ const sent = Astro.url.searchParams.get("sent") === "refer";
         <form method="POST" action="/api/refer" style="display:grid;gap:1.3rem;margin-top:1rem">
           <label style="display:grid;gap:.5rem">
             <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">Tell us about the situation <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
-            <textarea name="message" rows="4" required placeholder="Who is the young person, and what's happening? Share only what's appropriate, we'll follow up sensitively." style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px;resize:vertical"></textarea>
+            <textarea name="message" rows="4" required placeholder="Who is the young person, and what's happening? Share only what's appropriate, we'll follow up sensitively." style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px;resize:vertical"></textarea>
           </label>
           <label style="display:grid;gap:.5rem">
             <span style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--ink-soft)">How can we reach you?</span>
-            <input type="text" name="contact" placeholder="Your name, role, and best contact" style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:2px" />
+            <input type="text" name="contact" placeholder="Your name, role, and best contact" style="font:inherit;padding:.9rem 1rem;border:1px solid var(--line);background:#fff;border-radius:4px" />
           </label>
           <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
             <button type="submit" class="btn btn-help btn-lg">Send referral</button>

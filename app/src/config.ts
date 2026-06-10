@@ -11,9 +11,9 @@ export const site = {
 };
 
 export const contact = {
-  generalEmail: "hello@secondchances.org",
+  generalEmail: "hello@secondchances.co.ke",
   generalPhone: "+254 700 000 000",
-  safeguardingEmail: "safeguarding@secondchances.org",
+  safeguardingEmail: "safeguarding@secondchances.co.ke",
   safeguardingPhone: "+254 700 000 111",
   whatsapp: "+254 700 000 000",
   location: "Nairobi, Kenya",
