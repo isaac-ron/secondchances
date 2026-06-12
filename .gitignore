@@ -12,6 +12,13 @@
 /threshold.html
 /threshold.css
 /assets/
+/institutional-mock.html
+/daylight.html
+/.imgcheck3/
+/.imgcheck6
+
+# ── other ──────────────────────────────────────
+/.impeccable/critique/
 
 # ── dependencies / build output ──────────────────────────────────────
 node_modules/
@@ -27,4 +34,4 @@ dist/
 # ── os ───────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
-institutional-mock.html
+

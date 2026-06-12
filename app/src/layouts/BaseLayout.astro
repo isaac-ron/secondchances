@@ -13,8 +13,10 @@ const { title, description, current } = Astro.props;
     <BaseHead title={title} description={description} />
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
+    <a class="skip" href="#main">Skip to content</a>
     <Header current={current} />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer />

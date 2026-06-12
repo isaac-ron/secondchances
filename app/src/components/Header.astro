@@ -1,7 +1,6 @@
 ---
 import { primaryNav, site } from "../config";
 import BrandMark from "./BrandMark.astro";
-import ExitButton from "./ExitButton.astro";
 
 interface Props { current?: string }
 const { current } = Astro.props;
@@ -21,13 +20,18 @@ const { current } = Astro.props;
 
     <div class="utility">
       <div class="lang" aria-label="Language">
-        <button aria-pressed="true">EN</button><span>/</span><button aria-pressed="false">SW</button>
+        <button type="button" aria-pressed="true">EN</button><span>/</span><button type="button" aria-pressed="false">SW</button>
       </div>
-      <a class="btn btn-help" href="/get-help" aria-current={current === "get-help" ? "page" : undefined}>Get Help</a>
-      <a class="btn btn-give" href="/get-involved#donate">Donate</a>
-      <ExitButton />
-      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#211d18" stroke-width="2" stroke-linecap="round" /></svg>
+      <a class="btn btn-teal btn-sm btn-brutal" href="/get-help" aria-label="Get help" aria-current={current === "get-help" ? "page" : undefined}>
+        <svg class="bic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 4h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7.6L7 19.5V16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm3 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>
+        <span class="btxt">Get help</span>
+      </a>
+      <a class="btn btn-help btn-sm btn-donate btn-brutal" href="/get-involved#donate" aria-label="Donate">
+        <svg class="bic heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 20.8 4.6 13.3a4.7 4.7 0 0 1 0-6.6 4.7 4.7 0 0 1 6.6 0l.8.8.8-.8a4.7 4.7 0 0 1 6.6 0 4.7 4.7 0 0 1 0 6.6Z"/></svg>
+        <span class="btxt">Donate</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </div>

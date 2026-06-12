@@ -1,25 +1,38 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import SectionHead from "../components/SectionHead.astro";
-import DuotonePhoto from "../components/DuotonePhoto.astro";
 import { contact } from "../config";
+
+const u = (id: string, w: number) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
+const hands = "photo-1582213782179-e0d53f98f2ca";
+const door = "photo-1535556572967-276cd0ad5cba";
 ---
 <BaseLayout
   title="Safeguarding"
   description="Our commitment to the safety and dignity of every young person: principles, code of conduct, how to report a concern, and how we handle your data."
 >
-  <Hero variant="soft" image="https://picsum.photos/seed/sc-shelter/1900/1100" alt="A sheltering structure in soft light">
-    <h1 class="display">Safety is not a policy. It's a&nbsp;<em>promise.</em></h1>
-    <p class="lead">Second Chances exists in part because young people were harmed inside the very places meant to protect them. We hold ourselves to a higher standard, and we are transparent about it.</p>
+  <Hero
+    variant="soft"
+    labelledby="safe-h"
+    image={u(door, 1600)}
+    srcset={`${u(door, 1200)} 1200w, ${u(door, 1600)} 1600w, ${u(door, 2000)} 2000w`}
+    alt="An open door letting light into a quiet, sheltered room."
+  >
+    <span class="label" style="color:var(--amber-lt)">Safeguarding</span>
+    <h1 class="display" id="safe-h" style="margin-top:0.6rem">Safety is not a policy. It's a <em>promise.</em></h1>
+    <p class="hero-lead">Second Chances exists in part because young people were harmed inside the very places meant to protect them. We hold ourselves to a higher standard, and we are transparent about it.</p>
   </Hero>
 
-  <section class="section">
+  <!-- Principles -->
+  <section class="section" aria-labelledby="principles-h">
     <div class="wrap">
-      <SectionHead title="Our safeguarding&nbsp;principles.">
+      <div class="head" data-reveal>
+        <span class="label">How we keep people safe</span>
+        <h2 class="h2 title" id="principles-h" style="margin-top:0.5rem">Our safeguarding principles.</h2>
         <p class="lead">These commitments guide every interaction, every member of staff, and every volunteer and partner who works with us.</p>
-      </SectionHead>
-      <div class="reassure" style="margin-top:1.5rem">
+      </div>
+      <div class="reassure" data-reveal>
         <div><h4>The young person comes first</h4><p>The safety, dignity, and wishes of the young person guide every decision. We do not act over their heads.</p></div>
         <div><h4>Believe, and act</h4><p>When someone tells us they have been harmed, we listen, we believe, and we respond, sensitively and without delay.</p></div>
         <div><h4>Consent and control</h4><p>Nothing about a young person is shared or actioned without their informed consent, except where there is a serious risk of harm.</p></div>
@@ -30,27 +43,34 @@ import { contact } from "../config";
     </div>
   </section>
 
-  <section class="section band">
-    <div class="wrap split split--lead split--center">
-      <div>
-        <SectionHead title="Report a&nbsp;concern.">
-          <p class="lead">If you are worried about the safety of a young person, or about the conduct of anyone connected to Second Chances, please tell us. You can do so confidentially, and anonymously if you prefer.</p>
-        </SectionHead>
+  <!-- Report a concern -->
+  <section id="report" aria-labelledby="report-h" style="scroll-margin-top:5.5rem">
+    <article class="split-bleed tint" data-reveal>
+      <div class="media">
+        <img src={u(hands, 1200)} srcset={`${u(hands, 800)} 800w, ${u(hands, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="Many hands brought together in the centre of a circle." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="label" style="color:var(--amber-deep)">Report a concern</span>
+        <h2 class="h3" id="report-h" style="margin-top:0.4rem">If you're worried, tell us.</h2>
+        <p class="lead" style="margin-top:0.9rem">If you are worried about the safety of a young person, or the conduct of anyone connected to Second Chances, please tell us. You can do so confidentially, and anonymously if you prefer.</p>
         <p>If someone is in immediate danger, contact local emergency services first.</p>
-        <div class="paybill" style="border-style:solid;border-color:var(--amber)">
+        <div class="paybill" style="border-color:var(--amber)">
           <div><div class="k">Safeguarding line</div><div class="v" style="font-size:1.25rem">{contact.safeguardingPhone}</div></div>
           <div><div class="k">Confidential email</div><div class="v" style="font-size:1.1rem">{contact.safeguardingEmail}</div></div>
         </div>
-        <p style="margin-top:1.4rem"><a class="btn btn-help" href="/get-help">Report confidentially</a></p>
-      </div>
-      <DuotonePhoto src="https://picsum.photos/seed/sc-safe/950/1180" alt="A safe, sheltered space" />
-    </div>
+        <a class="btn btn-help" href="/get-help" style="margin-top:1.4rem">Report confidentially</a>
+      </div></div>
+    </article>
   </section>
 
-  <section class="section">
+  <!-- What happens next -->
+  <section class="section" aria-labelledby="after-h">
     <div class="wrap measure">
-      <SectionHead title="What happens after you&nbsp;tell&nbsp;us." />
-      <ol class="steps" style="margin-top:1rem">
+      <span class="label">After you tell us</span>
+      <h2 class="h2 title" id="after-h" style="margin-top:0.5rem">What happens next.</h2>
+      <ol class="steps" data-reveal>
         <li><span><b>We take it seriously, immediately.</b> Every concern is logged and reviewed by our designated safeguarding lead.</span></li>
         <li><span><b>We keep you informed.</b> We explain what we can do, what we can't, and what happens next, no surprises.</span></li>
         <li><span><b>We act to protect.</b> Where there is risk, we take steps to keep the young person safe and, where required, involve the relevant authorities.</span></li>
@@ -59,11 +79,12 @@ import { contact } from "../config";
     </div>
   </section>
 
-  <section class="section band">
+  <!-- Data -->
+  <section class="section band" aria-labelledby="data-h">
     <div class="wrap measure">
-      <SectionHead title="Your data, handled with&nbsp;care.">
-        <p class="lead">Many people share painful, private things with us. We treat that trust as sacred.</p>
-      </SectionHead>
+      <span class="label">Your data</span>
+      <h2 class="h2 title" id="data-h" style="margin-top:0.5rem">Handled with care.</h2>
+      <p class="lead" style="margin-top:0.9rem">Many people share painful, private things with us. We treat that trust as sacred.</p>
       <div class="faq">
         <details>
           <summary>What do you do with what I share?</summary>
@@ -82,10 +103,11 @@ import { contact } from "../config";
     </div>
   </section>
 
-  <section class="section band-ink center closing-cta">
+  <!-- Closing -->
+  <section class="section band-ink center" aria-labelledby="safe-close-h">
     <div class="wrap measure">
-      <p class="display">If something happened to you, it was never your&nbsp;fault, and it's never too&nbsp;late&nbsp;to&nbsp;tell.</p>
-      <div class="hero-cta closing-cta-buttons">
+      <p class="display" id="safe-close-h">If something happened to you, it was never your fault, and it's never too late to <em>tell.</em></p>
+      <div class="hero-cta closing-cta-buttons" style="justify-content:center">
         <a class="btn btn-help btn-lg" href="/get-help">Talk to someone safe</a>
       </div>
     </div>

@@ -2,8 +2,12 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import SectionHead from "../components/SectionHead.astro";
 import Funds from "../components/Funds.astro";
+
+const u = (id: string, w: number) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
+const path = "photo-1567095199396-d4e5588a3cb8";
+const nairobi = "photo-1656068218535-85db26125e13";
 
 const stories = (await getCollection("stories"))
   .filter((s) => !s.data.featured)
@@ -14,83 +18,131 @@ const stories = (await getCollection("stories"))
   description="An inside-out model that creates lasting change, an honest breakdown of where funds go, and the stories that prove it works."
   current="impact"
 >
-  <Hero image="https://picsum.photos/seed/sc-bridge/1900/1200" alt="A bridge crossing toward open ground">
-    <h1 class="display">You're not funding charity. You're funding a&nbsp;<em>bridge.</em></h1>
-    <p class="lead">A discontinued sponsorship leaves a young person at the edge of an adult world they were never prepared for. Your support is the bridge they cross, into education, healing, justice, and belonging.</p>
+  <Hero
+    labelledby="impact-h"
+    image={u(path, 1600)}
+    srcset={`${u(path, 1200)} 1200w, ${u(path, 1600)} 1600w, ${u(path, 2000)} 2000w`}
+    alt="A path leading toward open ground and the morning light."
+  >
+    <span class="label" style="color:var(--amber-lt)">Where your support goes</span>
+    <h1 class="display" id="impact-h" style="margin-top:0.6rem">You're not funding charity. You're funding a <em>bridge.</em></h1>
+    <p class="hero-lead">A discontinued sponsorship leaves a young person at the edge of an adult world they were never prepared for. Your support is the bridge they cross: into education, healing, justice, and belonging.</p>
     <div class="hero-cta">
-      <a class="btn btn-amber btn-lg" href="/get-involved#donate">Donate now</a>
+      <a class="btn btn-help btn-lg" href="/get-involved#donate">Donate now</a>
       <a class="btn btn-give btn-lg" href="/get-involved#partnerships">Partner with us</a>
     </div>
   </Hero>
 
-  <section class="section band">
-    <div class="wrap split split--lead">
-      <div>
-        <SectionHead title="Built from the inside, so it actually&nbsp;holds." />
-      </div>
-      <div class="measure">
-        <p class="lead">Most programmes for care leavers are designed by people looking in. Ours was built by someone who lived it: Peter spent his childhood in a Nairobi children's home, then a decade working inside that same system.</p>
-        <p>That perspective changes everything. We don't guess what a young person leaving care needs, we remember. The result is support that addresses the structural gap, not just the symptom: not a one-off handout, but a path back to stability that lasts.</p>
-        <a class="link-arrow" href="/our-story">Read Peter's story →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap split split--center">
-      <div>
-        <SectionHead title="Honest about every&nbsp;shilling.">
-          <p class="lead">A donor is purchasing a promise: that a young person will be helped. We keep that promise transparent. <span class="small muted">(Illustrative allocation, replace with audited figures.)</span></p>
-        </SectionHead>
-      </div>
-      <div>
-        <Funds />
-        <p class="consent-note">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /></svg>
-          Independently reviewed, full reports below
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section band">
+  <!-- Stats band -->
+  <section class="stats" aria-label="At a glance">
     <div class="wrap">
-      <SectionHead title="From care to&nbsp;career.">
-        <p class="lead measure">These are real outcomes, shared with consent and anonymised to protect dignity. We don't trade in pity, we show what becomes possible when someone refuses to give up on a young person.</p>
-      </SectionHead>
-      <div class="stories">
-        {stories.map((s) => (
-          <article class="story">
-            {s.data.tag && <p class="tag">{s.data.tag}</p>}
-            <blockquote>{s.data.quote}</blockquote>
-            <p class="who">{s.data.attribution}</p>
-          </article>
+      <div class="stat">
+        <span class="num" data-count="70" data-suffix="%" title="Illustrative allocation; replaced with audited figures before launch.">70%</span>
+        <span class="txt"><b>of every gift</b> reaches young people directly</span>
+      </div>
+      <div class="stat">
+        <span class="num" data-count="4">4</span>
+        <span class="txt"><b>pillars</b> of wraparound support, not a one-off handout</span>
+      </div>
+      <div class="stat">
+        <span class="num" data-count="100" data-suffix="%">100%</span>
+        <span class="txt"><b>of stories</b> shared with documented, revocable consent</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built from the inside -->
+  <section aria-labelledby="inside-h">
+    <article class="split-bleed flip" data-reveal>
+      <div class="media">
+        <img src={u(nairobi, 1200)} srcset={`${u(nairobi, 800)} 800w, ${u(nairobi, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="A street in Nairobi in the early light." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="label">An inside-out model</span>
+        <h2 class="h3" id="inside-h" style="margin-top:0.4rem">Built from the inside, so it actually holds.</h2>
+        <p class="lead" style="margin-top:0.9rem">Most programmes for care leavers are designed by people looking in. Ours was built by someone who lived it: Peter spent his childhood in a Nairobi children's home, then a decade working inside that same system.</p>
+        <p class="pullquote">We don't guess what a young person needs. We remember.</p>
+        <p>The result addresses the structural gap, not just the symptom: not a handout, but a path back to stability that lasts.</p>
+        <a class="arrow" href="/our-story">Read Peter's story <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      </div></div>
+    </article>
+  </section>
+
+  <!-- Transparency -->
+  <section class="section transp" aria-labelledby="money-h">
+    <div class="wrap money">
+      <div data-reveal>
+        <span class="label">Honest about every shilling</span>
+        <h2 class="h2 title" id="money-h" style="margin-top:0.6rem">A donor is purchasing a promise.</h2>
+        <p class="lead" style="margin-top:1rem">That a young person will be helped. We keep that promise transparent, and we show exactly where support goes. <span class="small muted">(Illustrative allocation, replaced with audited figures before launch.)</span></p>
+        <Funds />
+        <div class="money-cta">
+          <a class="btn btn-help" href="/get-involved#donate">Donate and bridge the gap</a>
+          <a class="btn btn-outline" href="#reports">See the reports</a>
+        </div>
+      </div>
+      <ul class="trust" data-reveal="2">
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/015-shield.png)" aria-hidden="true"></span>
+          <div><b>Safeguarding-first.</b><p>A clear child-protection policy and a confidential way to report any concern.</p></div>
+        </li>
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/014-transparency.png)" aria-hidden="true"></span>
+          <div><b>Transparent.</b><p>An honest breakdown of where every contribution goes, published and kept current.</p></div>
+        </li>
+        <li>
+          <span class="picon sm amber" style="--src:url(/icons/016-user.png)" aria-hidden="true"></span>
+          <div><b>Lived experience.</b><p>Led by people who have walked this road, not looked in from outside.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Voices (dark band) -->
+  <section class="section voices" id="updates" aria-labelledby="voices-h" style="scroll-margin-top:5.5rem">
+    <div class="wrap">
+      <span class="label">From care to career</span>
+      <h2 class="h2 title" id="voices-h" style="margin-top:0.7rem; color:#fff">Real outcomes, shared with consent.</h2>
+      <p class="lead" style="color:rgba(239,234,221,0.8)">We don't trade in pity. We show what becomes possible when someone refuses to give up on a young person.</p>
+      <div class="voice-grid">
+        {stories.map((s, i) => (
+          <figure class="voice" data-reveal={i % 2 === 1 ? "2" : undefined}>
+            <p class="q">{s.data.quote}</p>
+            <figcaption class="meta">
+              {s.data.tag && <span class="tag">{s.data.tag}</span>}
+              <span class="by">{s.data.attribution}</span>
+            </figcaption>
+          </figure>
         ))}
       </div>
-      <p class="consent-note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 12l2 2 4-4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-        No story is ever published without the young person's documented, revocable consent.
-      </p>
+      <p class="consent-note" style="color:rgba(239,234,221,0.6)">No story is ever published without the young person's documented, revocable consent.</p>
     </div>
   </section>
 
-  <section class="section">
+  <!-- Ways to give -->
+  <section class="section" aria-labelledby="give-h">
     <div class="wrap">
-      <SectionHead title="Three ways to make it&nbsp;last.">
-        <p class="lead">Join us in bridging the gap.</p>
-      </SectionHead>
+      <div class="head" data-reveal>
+        <span class="label">Three ways to make it last</span>
+        <h2 class="h2 title" id="give-h" style="margin-top:0.5rem">Join us in bridging the gap.</h2>
+      </div>
       <div class="channels">
-        <article class="channel">
+        <article class="channel" data-reveal>
+          <span class="picon sm teal" style="--src:url(/icons/016-user.png)" aria-hidden="true"></span>
           <h3>Give monthly</h3>
-          <p>Steady support is what lets us promise a young person we won't disappear. From KES 500 / mo.</p>
+          <p>Steady support is what lets us promise a young person we won't disappear. From KES 500 a month.</p>
           <a class="btn btn-amber go" href="/get-involved#donate">Become a monthly giver</a>
         </article>
-        <article class="channel">
+        <article class="channel" data-reveal="2">
+          <span class="picon sm teal" style="--src:url(/icons/014-transparency.png)" aria-hidden="true"></span>
           <h3>Give once</h3>
-          <p>A one-time gift via M-Pesa, card, or bank transfer, every amount moves someone closer to stable ground.</p>
+          <p>A one-time gift via M-Pesa, card, or bank transfer. Every amount moves someone closer to stable ground.</p>
           <a class="btn btn-amber go" href="/get-involved#donate">Make a one-time gift</a>
         </article>
-        <article class="channel">
+        <article class="channel" data-reveal="3">
+          <span class="picon sm amber" style="--src:url(/icons/011-united.png)" aria-hidden="true"></span>
           <h3>Partner with us</h3>
           <p>Corporates and foundations can fund a specific pillar: counselling, training, or legal aid.</p>
           <a class="btn btn-give go" href="/get-involved#partnerships">Explore partnerships</a>
@@ -99,38 +151,41 @@ const stories = (await getCollection("stories"))
     </div>
   </section>
 
-  <section class="section band" id="reports" style="scroll-margin-top:6rem">
+  <!-- Reports / accountability -->
+  <section class="section band" id="reports" aria-labelledby="reports-h" style="scroll-margin-top:5.5rem">
     <div class="wrap split split--center">
-      <div>
-        <SectionHead title="Trust, documented.">
-          <p class="lead">Our legal status, governance, safeguarding policy, and annual reports are open for you to read. Transparency isn't a formality here, it's how we honour both the young people and the people who back them.</p>
-        </SectionHead>
+      <div data-reveal>
+        <span class="label">Trust, documented</span>
+        <h2 class="h2 title" id="reports-h" style="margin-top:0.5rem">Open for you to read.</h2>
+        <p class="lead" style="margin-top:0.9rem">Our legal status, governance, safeguarding policy, and annual reports are public. Transparency isn't a formality here; it's how we honour both the young people and the people who back them.</p>
       </div>
-      <div>
-        <ul class="trust-points">
-          <li>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 2h9l5 5v15H6z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /><path d="M15 2v5h5" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /></svg>
-            <a class="link-arrow inline" href="#">Annual report and audited financials →</a>
-          </li>
-          <li>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /></svg>
-            <a class="link-arrow inline" href="/safeguarding">Safeguarding and child-protection policy →</a>
-          </li>
-          <li>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /></svg>
-            <a class="link-arrow inline" href="#">Registration, board and governance →</a>
-          </li>
-        </ul>
-      </div>
+      <ul class="trust-points" data-reveal="2">
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/017-report.png)" aria-hidden="true"></span>
+          <span><b>Annual report and audited financials.</b> Published each year. <span class="small muted">(Coming with our first full year.)</span></span>
+        </li>
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/015-shield.png)" aria-hidden="true"></span>
+          <span><b>Safeguarding and child-protection policy.</b> <a class="link-arrow inline" href="/safeguarding">Read it <span>&rarr;</span></a></span>
+        </li>
+        <li>
+          <span class="picon sm amber" style="--src:url(/icons/018-government.png)" aria-hidden="true"></span>
+          <span><b>Registration, board and governance.</b> A {`Child in Family Focus Kenya`} initiative.</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section class="section band-ink center closing-cta">
-    <div class="wrap measure">
-      <p class="display">Refuse to give up on a young person. Watch a life turn, quietly,&nbsp;completely.</p>
-      <div class="hero-cta closing-cta-buttons">
-        <a class="btn btn-amber btn-lg" href="/get-involved#donate">Donate now</a>
-        <a class="btn btn-ghost btn-lg" href="/get-involved#partnerships">Partner with us</a>
+  <!-- Closing -->
+  <section class="closing" aria-labelledby="impact-close-h">
+    <div class="closing-media">
+      <img src={u(path, 1600)} sizes="100vw" width="1600" height="900" loading="lazy" alt="A path leading toward the morning light." />
+    </div>
+    <div class="wrap">
+      <h2 class="display" id="impact-close-h">Refuse to give up on a young person. Watch a life turn, quietly, <em>completely.</em></h2>
+      <div class="closing-cta">
+        <a class="btn btn-help btn-lg" href="/get-involved#donate">Donate now</a>
+        <a class="btn btn-ghost-light btn-lg" href="/get-involved#partnerships">Partner with us</a>
       </div>
     </div>
   </section>

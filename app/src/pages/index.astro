@@ -1,112 +1,343 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import SectionHead from "../components/SectionHead.astro";
-import Doors from "../components/Doors.astro";
-import DuotonePhoto from "../components/DuotonePhoto.astro";
-import Callout from "../components/Callout.astro";
-import MediaBand from "../components/MediaBand.astro";
-import PillarList from "../components/PillarList.astro";
+import { funds } from "../config";
 
-const featured = (await getCollection("stories")).find((s) => s.data.featured);
+// Approved imagery from the daylight prototype (Unsplash).
+const u = (id: string, w: number) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
+
+const heroId = "photo-1567095199396-d4e5588a3cb8";
+const founderId = "photo-1656068218535-85db26125e13";
+const pillarCounsellingId = "photo-1574740637579-9ca0a610e491";
+const pillarEducationId = "photo-1550592704-6c76defa9985";
+const pillarLegalId = "photo-1632152133952-98b268dc4b86";
+const pillarCommunityId = "photo-1582213782179-e0d53f98f2ca";
+const newsFeatureId = "photo-1535556572967-276cd0ad5cba";
 ---
 <BaseLayout
-  title="Home"
-  description="Second Chances walks alongside young people leaving or who have left institutional care across Kenya. You were never meant to do this alone."
+  title="Support &amp; Resources"
+  description="Practical support for young people leaving care across Kenya: counselling, education, legal aid and community."
 >
-  <Hero image="https://picsum.photos/seed/sc-threshold/1900/1200" alt="Light spilling through an open doorway">
-    <h1 class="display">You were never meant to&nbsp;do&nbsp;this <em>alone.</em></h1>
-    <p class="lead">Second Chances walks alongside young people who are leaving, or have already left, institutional care across Kenya. Whatever brought you here: you are not too late, you are not too far gone, and you are not too much.</p>
+  <!-- ===================== HERO ===================== -->
+  <Hero
+    labelledby="hero-h"
+    image={u(heroId, 1600)}
+    srcset={`${u(heroId, 1200)} 1200w, ${u(heroId, 1600)} 1600w, ${u(heroId, 2000)} 2000w`}
+    sizes="100vw"
+    width={1600}
+    height={900}
+    alt="A small group walking together along a path toward the morning sun over open country."
+  >
+    <h1 class="display" id="hero-h">You were never meant to do this <em>alone.</em></h1>
+    <p class="hero-lead">Second Chances walks alongside young people leaving care across Kenya. You are not too late, not too far gone, and not too much.</p>
     <div class="hero-cta">
       <a class="btn btn-help btn-lg" href="/get-help">I need support</a>
-      <a class="btn btn-give btn-lg" href="/impact">I want to help</a>
+      <a class="btn btn-ghost-light btn-lg" href="/get-involved">How you can help</a>
     </div>
     <p class="hero-foot">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#8a8377" stroke-width="1.7" stroke-linejoin="round" /></svg>
-      This site is private. You can <a href="#" data-exit>leave quickly</a> at any time.
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
+      This site is private. You can <a href="https://www.google.com" data-exit>leave quickly</a> at any time.
     </p>
   </Hero>
 
-  <section class="section">
+  <!-- ===================== STATS (teal block) ===================== -->
+  <section class="stats" aria-label="At a glance">
     <div class="wrap">
-      <SectionHead title="Two ways through the&nbsp;same&nbsp;door.">
-        <p class="lead">We walk alongside two groups of young people, wherever you are on the journey, there is a way in.</p>
-      </SectionHead>
-      <Doors />
-    </div>
-  </section>
-
-  <section class="section band">
-    <div class="wrap split split--lead split--center">
-      <DuotonePhoto src="https://picsum.photos/seed/sc-window/900/1100" alt="Quiet light through a window" />
-      <div class="measure">
-        <SectionHead title="Built from the&nbsp;inside." />
-        <p class="lead">It wasn't built by people looking in. After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty: one of thirty children under two house mothers, waiting, like so many do, for someone to come.</p>
-        <Callout variant="teal">No one came.</Callout>
-        <p>Years later he returned to that same home, first as a social worker, then as a social programmes manager, spending a decade working from inside the system he had survived. Second Chances is what he once needed himself.</p>
-        <a class="link-arrow" href="/our-story">Read Peter's story →</a>
+      <div class="stat">
+        <span class="num" data-count="70" data-suffix="%" title="Illustrative allocation; replaced with audited figures before launch.">70%</span>
+        <span class="txt"><b>of every gift</b> reaches young people directly</span>
+      </div>
+      <div class="stat">
+        <span class="num" data-count="4">4</span>
+        <span class="txt"><b>pillars of support:</b> counselling, education, legal aid, community</span>
+      </div>
+      <div class="stat">
+        <span class="num" data-count="100" data-suffix="%">100%</span>
+        <span class="txt"><b>confidential,</b> always, and free to reach out</span>
       </div>
     </div>
   </section>
 
-  <MediaBand image="https://picsum.photos/seed/sc-path/1700/1000" alt="A path leading toward the horizon" by="Peter Kamau Muthui, Founder">
-    It requires someone looking a young person in the eye and saying <em>I am not going anywhere.</em>
-  </MediaBand>
-
-  <section class="section">
+  <!-- ===================== TWO DOORS (open panels) ===================== -->
+  <section class="section doors-sec" id="help" aria-labelledby="doors-h">
     <div class="wrap">
-      <SectionHead title="The same grace we'd extend to&nbsp;our&nbsp;own&nbsp;children.">
+      <div class="head" data-reveal>
+        <h2 class="h2" id="doors-h">Two ways through the same door.</h2>
+        <p class="lead">Wherever you are on the journey, there is a way in.</p>
+      </div>
+      <div class="doors">
+        <article class="door door--primary" data-reveal>
+          <span class="picon teal" style="--src:url(/icons/001-traveller.png)" aria-hidden="true"></span>
+          <h3 class="h3">Leaving care right now</h3>
+          <p>Ageing out, discontinued from sponsorship, or leaving a children's home for any reason. This is the most uncertain moment, with no one waiting. We step into that gap immediately: stabilisation, counselling, safe referrals, and a community that does not disappear.</p>
+          <a class="arrow" href="/get-help">Start here <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+        </article>
+        <article class="door door--secondary" data-reveal="2">
+          <span class="picon amber" style="--src:url(/icons/002-traveler.png)" aria-hidden="true"></span>
+          <h3 class="h3">You left a while ago, and lost your footing</h3>
+          <p>You transitioned some time back, the support ran out, and you have been carrying an adult world on shoulders that were never prepared to hold it. It is never too late. Second Chances is here for you too.</p>
+          <a class="arrow" href="/get-help">Reach out <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOUNDER (full-bleed split) ===================== -->
+  <section id="story" aria-labelledby="story-h">
+    <div class="split-bleed" data-reveal>
+      <div class="media">
+        <img src={u(founderId, 1200)}
+             srcset={`${u(founderId, 800)} 800w, ${u(founderId, 1200)} 1200w, ${u(founderId, 1600)} 1600w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="1400" loading="lazy"
+             alt="A street in Nairobi in the early light, ordinary life moving through it." />
+        <span class="cap">Nairobi, where Second Chances began</span>
+      </div>
+      <div class="copy">
+        <div class="inner">
+          <span class="label">Built from the inside</span>
+          <h2 class="h2" id="story-h" style="margin-top:0.7rem">It wasn't built by people looking in.</h2>
+          <p class="lead" style="margin-top:1rem">After his parents died, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He stayed until he was twenty: one of thirty children under two house mothers, waiting, like so many do, for someone to come.</p>
+          <p class="pullquote">No one came.</p>
+          <p>Years later he returned to that same home, first as a social worker, then as a programmes manager, a decade spent working from inside the system he had survived. Second Chances is what he once needed himself.</p>
+          <a class="arrow" href="/our-story">Read Peter's story <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PILLARS (full-bleed splits) ===================== -->
+  <section class="pillars" aria-labelledby="pillars-h">
+    <div class="wrap">
+      <div class="head" data-reveal style="margin-block: clamp(2.5rem,5vw,4rem) clamp(1.5rem,3vw,2.5rem)">
+        <span class="label">How we help</span>
+        <h2 class="h2" id="pillars-h" style="margin-top:0.7rem">The same grace we'd give our own children.</h2>
         <p class="lead">Because that is exactly what they are. Four ways we stand with every young person who comes to us.</p>
-      </SectionHead>
-      <PillarList />
+      </div>
+    </div>
+
+    <article class="split-bleed flip" data-reveal>
+      <div class="media">
+        <img src={u(pillarCounsellingId, 1200)}
+             srcset={`${u(pillarCounsellingId, 800)} 800w, ${u(pillarCounsellingId, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="Two people's hands, one holding the other steady against soft daylight." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="pillar-no"><span class="picon teal" style="--src:url(/icons/013-social-care.png)" aria-hidden="true"></span><span class="step">Counselling</span></span>
+        <h3 class="h3">Counselling &amp; Healing</h3>
+        <p>Leaving care often means carrying what happened inside it. Our counsellors are trauma-informed and understand the care-leaver experience from the inside. Confidential, paced by you, for as long as you need.</p>
+        <a class="arrow" href="/get-help">Start a confidential conversation <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      </div></div>
+    </article>
+
+    <article class="split-bleed" data-reveal>
+      <div class="media">
+        <img src={u(pillarEducationId, 1200)}
+             srcset={`${u(pillarEducationId, 800)} 800w, ${u(pillarEducationId, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="A hand writing in an open notebook in bright daylight." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="pillar-no"><span class="picon amber" style="--src:url(/icons/005-graduation-cap.png)" aria-hidden="true"></span><span class="step">Education</span></span>
+        <h3 class="h3">Education &amp; Vocational Training</h3>
+        <p>A discontinued sponsorship should not mean a discontinued future. We reconnect young people with school, college, and skills pathways that meet them where they are now, and help them find the next door.</p>
+        <a class="arrow" href="/how-we-help#education">Explore your options <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      </div></div>
+    </article>
+
+    <article class="split-bleed flip" data-reveal>
+      <div class="media">
+        <img src={u(pillarLegalId, 1200)}
+             srcset={`${u(pillarLegalId, 800)} 800w, ${u(pillarLegalId, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="Documents and a pen resting on a warm wooden table." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="pillar-no"><span class="picon teal" style="--src:url(/icons/004-balance.png)" aria-hidden="true"></span><span class="step">Legal aid</span></span>
+        <h3 class="h3">Legal Aid</h3>
+        <p>For survivors pursuing justice, and for care leavers navigating systems never designed with them in mind. From a missing birth certificate or national ID to standing with a survivor through a case, at your pace, with someone beside you.</p>
+        <a class="arrow" href="/how-we-help#legal-aid">Get legal support <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      </div></div>
+    </article>
+
+    <article class="split-bleed" data-reveal>
+      <div class="media">
+        <img src={u(pillarCommunityId, 1200)}
+             srcset={`${u(pillarCommunityId, 800)} 800w, ${u(pillarCommunityId, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="Many hands brought together in the centre of a circle." />
+      </div>
+      <div class="copy"><div class="inner">
+        <span class="pillar-no"><span class="picon amber" style="--src:url(/icons/012-group.png)" aria-hidden="true"></span><span class="step">Community</span></span>
+        <h3 class="h3">Peer Community</h3>
+        <p>The opposite of leaving care alone is belonging. A community of people who have walked this road, and people who believe in second chances. Mentors who stayed. A place to be known, not managed.</p>
+        <a class="arrow" href="/how-we-help#community">Find your people <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      </div></div>
+    </article>
+  </section>
+
+  <!-- ===================== MISSION (amber block) ===================== -->
+  <section class="mission" aria-label="Our promise">
+    <div class="wrap" data-reveal>
+      <p class="q">It takes someone looking a young person in the eye and saying <em>I am not going anywhere.</em></p>
+      <p class="by">Peter Kamau Muthui, Founder</p>
     </div>
   </section>
 
-  {featured && (
-    <section class="section band">
-      <div class="wrap measure center">
-        <h2 class="title voice-title">In their words.</h2>
-        <blockquote class="voice">
-          {featured.data.quote}
-          <cite>{featured.data.attribution}</cite>
-        </blockquote>
+  <!-- ===================== PARTNER BAND ===================== -->
+  <section class="partners" aria-label="Partners and supporters">
+    <div class="wrap">
+      <p class="partners-head">Working alongside</p>
+      <div class="partners-row">
+        <span class="partner" aria-label="The Red Cross">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.2 2h5.6a1 1 0 0 1 1 1v5.2H21a1 1 0 0 1 1 1v5.6a1 1 0 0 1-1 1h-5.2V21a1 1 0 0 1-1 1H9.2a1 1 0 0 1-1-1v-5.2H3a1 1 0 0 1-1-1V9.2a1 1 0 0 1 1-1h5.2V3a1 1 0 0 1 1-1Z" /></svg>
+          <span class="pword">RED CROSS</span>
+        </span>
+        <span class="partner" aria-label="UNICEF">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2c.9 0 1.8.2 2.6.5L12 8 9.4 4.5C10.2 4.2 11.1 4 12 4ZM4.6 9.1 8 11.4l-1 3.9-3.5.2A8 8 0 0 1 4.6 9.1Zm2.6 9 3.2-.1L12 21a8 8 0 0 1-4.8-2.9Zm9.6 0A8 8 0 0 1 12 21l1.6-3 3.2.1ZM20.5 15.5l-3.5-.2-1-3.9 3.4-2.3a8 8 0 0 1 1.1 6.4Z" /></svg>
+          <span class="pword lower">unicef</span>
+        </span>
+        <span class="partner" aria-label="United Nations">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.6c-.6 1-.6 2.3 0 3.6.6-1.3.6-2.6 0-3.6ZM7.4 4.1c0 1.2.6 2.3 1.7 3-.2-1.3-.8-2.4-1.7-3Zm9.2 0c-.9.6-1.5 1.7-1.7 3 1.1-.7 1.7-1.8 1.7-3ZM12 7.5a4.5 4.5 0 0 0-4.5 4.5h9A4.5 4.5 0 0 0 12 7.5Zm-7 9c.8 1.4 2.4 2.4 4.4 2.7C8.5 18 7 16.9 6.3 15.4l-1.3 1.1Zm14 0-1.3-1.1c-.7 1.5-2.2 2.6-3.1 3.8 2-.3 3.6-1.3 4.4-2.7Zm-7 1.2c-1.6 0-3 .5-4 1.3 1 .8 2.4 1.3 4 1.3s3-.5 4-1.3c-1-.8-2.4-1.3-4-1.3Z" /></svg>
+          <span class="pword">UN</span>
+        </span>
+        <span class="partner" aria-label="World Health Organization">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.4c-.5.9-.5 2 0 3.1.5-1.1.5-2.2 0-3.1ZM12 7a5 5 0 0 0-5 5 5 5 0 0 0 3.2 4.7c-.1.6-.5 1.1-1 1.4l1 1.7c1-.6 1.6-1.6 1.8-2.7v.9h2v-1.4A5 5 0 0 0 17 12a5 5 0 0 0-5-5Zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3Z" /></svg>
+          <span class="pword">WHO</span>
+        </span>
+        <span class="partner" aria-label="Save the Children">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a2.2 2.2 0 1 0 0 4.4A2.2 2.2 0 0 0 12 3Zm-1 5.5c-1.6.3-2.9 1.4-3.5 2.9l-1.7 4a1 1 0 0 0 1.8.8l1.5-3.4.3 4-2 3.6a1 1 0 0 0 1.7 1l2-3.5h1.8l2 3.5a1 1 0 0 0 1.7-1l-2-3.6.3-4 1.5 3.4a1 1 0 0 0 1.8-.8l-1.7-4c-.6-1.5-1.9-2.6-3.5-2.9-.6-.1-1.7-.1-2.3 0Z" /></svg>
+          <span class="pword">Save the Children</span>
+        </span>
       </div>
-    </section>
-  )}
+      <p class="partners-note">Illustrative partners, shown for layout. Real affiliations confirmed before launch.</p>
+    </div>
+  </section>
 
-  <section class="section">
-    <div class="wrap split split--center">
-      <div>
-        <SectionHead title="Rooted, accountable, and&nbsp;here&nbsp;to&nbsp;stay.">
-          <p class="lead">Second Chances grew out of Child in Family Focus Kenya (CFFK), a respected care-reform organisation championing family-based care. We take safeguarding seriously, and we are transparent about where support goes.</p>
-        </SectionHead>
+  <!-- ===================== NEWS / UPDATES ===================== -->
+  <section class="section news" id="news" aria-labelledby="news-h">
+    <div class="wrap">
+      <div class="news-head" data-reveal>
+        <div>
+          <span class="label">Updates</span>
+          <h2 class="h2" id="news-h" style="margin-top:0.7rem">Latest from Second Chances.</h2>
+          <p class="lead">Small, steady progress, shared honestly as it happens.</p>
+        </div>
+        <a class="arrow" href="/impact#updates">View all updates <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
       </div>
-      <div>
-        <ul class="trust-points">
-          <li>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="#287b7b" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 12l2 2 4-4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            <span><b>Safeguarding-first.</b> A clear child-protection policy and a confidential way to report any concern.</span>
-          </li>
-          <li>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            <span><b>Transparent.</b> An honest breakdown of where every contribution goes. <a class="link-arrow inline" href="/impact">See our impact →</a></span>
-          </li>
-          <li>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0M3 20a7 7 0 0 1 14 0M18 8h4m-2-2v4" stroke="#287b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            <span><b>Lived experience.</b> Led by people who have walked this road, not looked in from outside.</span>
-          </li>
-        </ul>
+
+      <div class="news-layout">
+        <a class="news-feature" href="/impact#updates" data-reveal>
+          <img src={u(newsFeatureId, 1100)}
+               srcset={`${u(newsFeatureId, 760)} 760w, ${u(newsFeatureId, 1100)} 1100w`}
+               sizes="(max-width: 940px) 100vw, 56vw" width="1100" height="820" loading="lazy"
+               alt="An open door letting light into a quiet room." />
+          <span class="news-fbody">
+            <span class="news-meta"><span class="news-tag">Programme</span><span class="news-date">June 2026</span></span>
+            <h3 class="h3">A drop-in space opens in Nairobi</h3>
+            <p>A safe place to land in the first weeks after leaving care: a desk, a kettle, and someone who answers.</p>
+            <span class="arrow" aria-hidden="true">Read the update <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+          </span>
+        </a>
+
+        <div class="news-side">
+          <p class="news-side-head">More updates</p>
+          <a class="news-item" href="/impact#updates" data-reveal="2">
+            <span class="news-meta"><span class="news-tag">Report</span><span class="news-date">May 2026</span></span>
+            <h3>Preparing our first accountability report</h3>
+            <p>An honest account of year one: who we reached, and where the money went.</p>
+          </a>
+          <a class="news-item" href="/impact#updates" data-reveal="3">
+            <span class="news-meta"><span class="news-tag amber">Partnership</span><span class="news-date">April 2026</span></span>
+            <h3>Pro bono advocates join the legal-aid pillar</h3>
+            <p>Volunteer lawyers stand with survivors seeking justice and help recover lost documents.</p>
+          </a>
+          <a class="news-item" href="/impact#updates" data-reveal="3">
+            <span class="news-meta"><span class="news-tag">Community</span><span class="news-date">March 2026</span></span>
+            <h3>An open call for mentors who have left care</h3>
+            <p>The peers who stayed are the heart of the work. We are inviting more to join.</p>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section band-ink center closing-cta">
-    <div class="wrap measure">
-      <p class="display">To every young person reading this: you don't have to&nbsp;do&nbsp;this&nbsp;alone.</p>
-      <div class="hero-cta closing-cta-buttons">
+  <!-- ===================== VOICES (dark band) ===================== -->
+  <section class="section voices" aria-labelledby="voices-h">
+    <div class="wrap">
+      <span class="label">In their words</span>
+      <h2 class="h2" id="voices-h" style="margin-top:0.7rem; color:#fff">Shared with consent. Names and images withheld.</h2>
+      <div class="voice-grid">
+        <figure class="voice" data-reveal>
+          <p class="q">I had packed my bag to leave the home with nowhere to go. Second Chances helped me re-enrol and find a room. <b>I sit my final exams next year.</b></p>
+          <figcaption class="meta">
+            <span class="tag">Discontinued at 19 · now in college</span>
+            <span class="by">Shared with consent, name and image withheld.</span>
+          </figcaption>
+        </figure>
+        <figure class="voice" data-reveal="2">
+          <p class="q">Something happened to me in care that I never said out loud. The legal team believed me. <b>For the first time, it isn't only mine to carry.</b></p>
+          <figcaption class="meta">
+            <span class="tag">Aged out · pursuing justice</span>
+            <span class="by">Shared with consent, name and image withheld.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRANSPARENCY ===================== -->
+  <section class="section transp" id="impact" aria-labelledby="money-h">
+    <div class="wrap money">
+      <div data-reveal>
+        <span class="label">Where your money goes</span>
+        <h2 class="h2" id="money-h" style="margin-top:0.7rem">A second chance, and a clear account of it.</h2>
+        <p class="lead" style="margin-top:1rem">We grew out of Child in Family Focus Kenya, a respected care-reform organisation. We take safeguarding seriously, and we show exactly where support goes.</p>
+
+        <div class="funds" role="img" aria-label="Fund allocation: 70 percent direct support and stabilisation, 20 percent education and training, 10 percent operations and safeguarding.">
+          {funds.map((f) => (
+            <div class="fund">
+              <div class="fund-head"><span>{f.label}</span><b>{f.pct}%</b></div>
+              <div class="fund-track"><div class={`fund-fill ${f.color}`} style={`--pct:${f.pct}%`} data-pct={f.pct}></div></div>
+            </div>
+          ))}
+        </div>
+        <p class="fund-note">Illustrative allocation, replaced with audited figures before launch.</p>
+
+        <div class="money-cta">
+          <a class="btn btn-help" href="/get-involved#donate">Donate and bridge the gap</a>
+          <a class="btn btn-outline" href="/impact">See our full impact</a>
+        </div>
+      </div>
+
+      <ul class="trust" data-reveal="2">
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/015-shield.png)" aria-hidden="true"></span>
+          <div><b>Safeguarding-first.</b><p>A clear child-protection policy and a confidential way to report any concern.</p></div>
+        </li>
+        <li>
+          <span class="picon sm teal" style="--src:url(/icons/014-transparency.png)" aria-hidden="true"></span>
+          <div><b>Transparent.</b><p>An honest breakdown of where every contribution goes, published and kept current.</p></div>
+        </li>
+        <li>
+          <span class="picon sm amber" style="--src:url(/icons/016-user.png)" aria-hidden="true"></span>
+          <div><b>Lived experience.</b><p>Led by people who have walked this road, not looked in from outside.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== CLOSING (dark photo band) ===================== -->
+  <section class="closing" id="give" aria-labelledby="closing-h">
+    <div class="closing-media">
+      <img src={u(heroId, 1600)} sizes="100vw" width="1600" height="900" loading="lazy" alt="A path leading toward the morning light over open country." />
+    </div>
+    <div class="wrap">
+      <h2 class="display" id="closing-h">To every young person reading this: you don't have to do this <em>alone.</em></h2>
+      <div class="closing-cta">
         <a class="btn btn-help btn-lg" href="/get-help">Get support</a>
-        <a class="btn btn-amber btn-lg" href="/get-involved#donate">Donate and bridge the gap</a>
+        <a class="btn btn-ghost-light btn-lg" href="/get-involved#donate">Donate and bridge the gap</a>
       </div>
     </div>
   </section>

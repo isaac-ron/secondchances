@@ -2,10 +2,13 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import SectionHead from "../components/SectionHead.astro";
-import DuotonePhoto from "../components/DuotonePhoto.astro";
-import Callout from "../components/Callout.astro";
-import MediaBand from "../components/MediaBand.astro";
+
+const u = (id: string, w: number) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
+const nairobi = "photo-1656068218535-85db26125e13";
+const door = "photo-1535556572967-276cd0ad5cba";
+const path = "photo-1567095199396-d4e5588a3cb8";
+const desk = "photo-1632152133952-98b268dc4b86";
 
 const entries = (await getCollection("team")).sort((a, b) => a.data.order - b.data.order);
 const team = await Promise.all(
@@ -14,89 +17,130 @@ const team = await Promise.all(
 ---
 <BaseLayout
   title="Our Story"
-  description="Second Chances wasn't built by people looking in. It was built by someone who lived it, Peter Kamau Muthui's journey from care leaver to care reformer."
+  description="Second Chances wasn't built by people looking in. It was built by someone who lived it: Peter Kamau Muthui's journey from care leaver to care reformer."
   current="our-story"
 >
-  <Hero image="https://picsum.photos/seed/sc-window/1900/1200" alt="Light through a window in a quiet room">
-    <h1 class="display">It was built by someone who&nbsp;<em>lived it.</em></h1>
-    <p class="lead">Second Chances was not built by people looking in. Its story begins with a boy in a Nairobi children's home, waiting for a family that never came.</p>
+  <Hero
+    labelledby="story-h"
+    image={u(nairobi, 1600)}
+    srcset={`${u(nairobi, 1200)} 1200w, ${u(nairobi, 1600)} 1600w, ${u(nairobi, 2000)} 2000w`}
+    alt="A street in Nairobi in the early light, ordinary life moving through it."
+  >
+    <span class="label" style="color:var(--amber-lt)">Built from the inside</span>
+    <h1 class="display" id="story-h" style="margin-top:0.6rem">It was built by someone who <em>lived it.</em></h1>
+    <p class="hero-lead">Second Chances was not built by people looking in. Its story begins with a boy in a Nairobi children's home, waiting for a family that never came.</p>
   </Hero>
 
-  <section class="section">
-    <div class="wrap split split--lead split--center">
-      <div>
-        <SectionHead title="Thirty children. Two house&nbsp;mothers. One&nbsp;long&nbsp;wait.">
-          <p class="lead">After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty, one of thirty children under the care of two house mothers working in shifts.</p>
-        </SectionHead>
-        <p>He spent years hoping, as so many children in care do, that one day someone would come to take him home to a family.</p>
+  <!-- Childhood / the wait -->
+  <section aria-labelledby="wait-h">
+    <article class="split-bleed" data-reveal>
+      <div class="media">
+        <img src={u(door, 1200)} srcset={`${u(door, 800)} 800w, ${u(door, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="1400" loading="lazy"
+             alt="An open door letting light into a quiet room." />
       </div>
-      <DuotonePhoto src="https://picsum.photos/seed/sc-corridor/950/1180" alt="A quiet corridor" />
+      <div class="copy"><div class="inner">
+        <span class="label">Where it begins</span>
+        <h2 class="h3" id="wait-h" style="margin-top:0.4rem">Thirty children. Two house mothers. One long wait.</h2>
+        <p class="lead" style="margin-top:0.9rem">After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty, one of thirty children under the care of two house mothers working in shifts.</p>
+        <p class="pullquote">No one came.</p>
+        <p>He spent years hoping, as so many children in care do, that one day someone would arrive to take him home to a family.</p>
+      </div></div>
+    </article>
+  </section>
+
+  <!-- Emotional beat: media band -->
+  <section class="media-band" aria-label="In Peter's words">
+    <img src={u(path, 1600)} sizes="100vw" width="1600" height="900" loading="lazy" alt="A path leading toward the morning light over open country." />
+    <div class="wrap" data-reveal>
+      <p class="display">I watched a friend leave for a foster family. I told myself, <em>I will be next.</em> I was not next.</p>
+      <p class="by">Peter, on growing up in care</p>
     </div>
   </section>
 
-  <MediaBand image="https://picsum.photos/seed/sc-empty/1900/1100" alt="An empty doorway at dusk" by="Peter Kamau Muthui, Founder">
-    I watched my friend John leave for a foster family. I told myself, <em>I will be next.</em> I was not next.
-  </MediaBand>
-
-  <section class="section band">
-    <div class="wrap split split--lead split--center">
-      <DuotonePhoto src="https://picsum.photos/seed/sc-desk/950/1180" alt="A desk by a window" />
-      <div>
-        <SectionHead title="He went back to the place that&nbsp;raised&nbsp;him.">
-          <p class="lead">That pain never left him, but instead of letting it harden him, it directed him. Peter returned to the very same children's home, first as a social worker, then as a social programmes manager.</p>
-        </SectionHead>
-        <p>For a decade he worked from inside the system he had survived, becoming a respected, globally recognised champion of care reform rooted in local realities. He went on to co-found <strong>Child in Family Focus Kenya (CFFK)</strong>, one of the country's most reputable organisations championing family-based care for orphaned and vulnerable children.</p>
+  <!-- The return -->
+  <section aria-labelledby="return-h">
+    <article class="split-bleed flip tint" data-reveal>
+      <div class="media">
+        <img src={u(desk, 1200)} srcset={`${u(desk, 800)} 800w, ${u(desk, 1200)} 1200w`}
+             sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy"
+             alt="Documents and a pen resting on a warm wooden table." />
       </div>
-    </div>
+      <div class="copy"><div class="inner">
+        <span class="label">The return</span>
+        <h2 class="h3" id="return-h" style="margin-top:0.4rem">He went back to the place that raised him.</h2>
+        <p class="lead" style="margin-top:0.9rem">That pain never left him. Instead of letting it harden him, it directed him. Peter returned to the very same children's home, first as a social worker, then as a social programmes manager.</p>
+        <p>For a decade he worked from inside the system he had survived, becoming a globally recognised champion of care reform rooted in local realities. He went on to co-found <strong>Child in Family Focus Kenya</strong>, one of the country's most reputable organisations championing family-based care for orphaned and vulnerable children.</p>
+      </div></div>
+    </article>
   </section>
 
-  <section class="section">
+  <!-- The gap that became Second Chances -->
+  <section class="section" aria-labelledby="gap-h">
     <div class="wrap measure">
-      <SectionHead title="The gap that wouldn't&nbsp;close.">
-        <p class="lead">Even from within strong care-reform work, a gap remained. Young people kept arriving, discontinued from sponsorship, aged out, or abandoned by orphanages, having lost everything from shelter to education, with nowhere left to turn.</p>
-      </SectionHead>
-      <Callout>When Peter extended a second chance to young people discontinued from care, he was not offering charity. He was offering what he once needed himself.</Callout>
+      <span class="label">The gap that wouldn't close</span>
+      <h2 class="h2" id="gap-h" style="margin-top:0.5rem">A promise, not an institution.</h2>
+      <p class="lead" style="margin-top:1rem">Even from within strong care-reform work, a gap remained. Young people kept arriving: discontinued from sponsorship, aged out, or abandoned by orphanages, having lost everything from shelter to schooling, with nowhere left to turn.</p>
+      <p class="pullquote">He wasn't offering charity. He was offering what he once needed himself.</p>
       <p>And so Second Chances was born, not as an institution, but as a promise: that no young person leaving care would have to do it alone.</p>
     </div>
   </section>
 
-  <section class="section band">
-    <div class="wrap split">
-      <div>
-        <SectionHead title="Our mission.">
-          <p class="lead">To walk alongside young people leaving institutional care across Kenya, meeting them at the most vulnerable moment with healing, education, justice, and a community that will not disappear.</p>
-        </SectionHead>
-      </div>
-      <div>
-        <SectionHead title="Our vision.">
-          <p class="lead">A Kenya where leaving care is not the same as being left behind, where every care leaver has a bridge to their full potential, and a second chance whenever they need one.</p>
-        </SectionHead>
-      </div>
+  <!-- Founder voice: amber band -->
+  <section class="mission" aria-label="A message from the founder">
+    <div class="wrap" data-reveal>
+      <p class="q">It requires presence. Someone looking a young person in the eye and saying <em>I am not going anywhere.</em></p>
+      <p class="by">Peter Kamau Muthui, Founder</p>
     </div>
   </section>
 
-  <section class="section">
+  <!-- Founder message -->
+  <section class="section" aria-labelledby="msg-h">
     <div class="wrap measure">
-      <SectionHead title="A message from the&nbsp;founder." />
-      <Callout variant="teal">I have seen what happens when someone simply refuses to give up on a young person. I have watched lives turn quietly, completely, in the direction of something better.</Callout>
-      <p>That transformation is not complicated. It does not require perfection. It requires presence: someone looking a young person in the eye and saying <em>I am not going anywhere.</em></p>
-      <p>There are no chances in a family; family will always be there. We are giving second chances to life. That is what we will always be. To every young person reading this: you were never meant to do this alone. And now, you don't have to.</p>
-      <p style="margin-top:1.6rem;font-family:var(--serif);font-style:italic;font-size:1.4rem">Peter Kamau Muthui</p>
-      <p class="small" style="font-family:var(--ui);text-transform:uppercase;letter-spacing:.16em;color:var(--ink-faint);margin-top:-.6rem">Founder, Second Chances · Executive Director, Child in Family Focus Kenya</p>
+      <span class="label">In his words</span>
+      <h2 class="h2" id="msg-h" style="margin-top:0.5rem">A message from the founder.</h2>
+      <p class="callout teal" style="margin-top:1.2rem">I have seen what happens when someone simply refuses to give up on a young person. I have watched lives turn quietly, completely, toward something better.</p>
+      <p>That transformation is not complicated. It does not require perfection. It requires presence: someone who stays.</p>
+      <p>There are no chances in a family; family will always be there. We are giving second chances at life. To every young person reading this: you were never meant to do this alone. And now, you don't have to.</p>
+      <p style="margin-top:1.6rem;font-family:var(--body);font-style:italic;font-size:1.4rem;color:var(--ink)">Peter Kamau Muthui</p>
+      <p class="label" style="color:var(--ink-faint);margin-top:0.1rem">Founder, Second Chances · Executive Director, Child in Family Focus Kenya</p>
     </div>
   </section>
 
-  <section class="section band">
+  <!-- Mission & vision -->
+  <section class="section band" aria-label="Mission and vision">
+    <div class="wrap split">
+      <div data-reveal>
+        <span class="label">Our mission</span>
+        <h3 class="h3" style="margin-top:0.5rem">Meet them at the most vulnerable moment.</h3>
+        <p class="lead" style="margin-top:0.8rem">To walk alongside young people leaving institutional care across Kenya with healing, education, justice, and a community that will not disappear.</p>
+      </div>
+      <div data-reveal="2">
+        <span class="label" style="color:var(--amber-deep)">Our vision</span>
+        <h3 class="h3" style="margin-top:0.5rem">Leaving care is not being left behind.</h3>
+        <p class="lead" style="margin-top:0.8rem">A Kenya where every care leaver has a bridge to their full potential, and a second chance whenever they need one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section" aria-labelledby="team-h">
     <div class="wrap">
-      <SectionHead title="The people who&nbsp;stay.">
-        <p class="lead">A team that leads with lived experience, and a board that holds us accountable. <span class="small muted">(Placeholder profiles, to be replaced with the real team.)</span></p>
-      </SectionHead>
-      <div class="team">
+      <div class="head" data-reveal>
+        <span class="label">The people who stay</span>
+        <h2 class="h2 title" id="team-h" style="margin-top:0.5rem">Led by lived experience.</h2>
+        <p class="lead">A team that leads from the inside, and a board that holds us accountable. <span class="small muted">(Placeholder profiles, to be replaced with the real team.)</span></p>
+      </div>
+      <div class="team" data-reveal>
         {team.map((m) => {
           const Bio = m.Content;
           return (
             <article class="member">
-              {m.photo && <DuotonePhoto src={m.photo} alt={`${m.name}, portrait`} shape="square" variant={m.photoVariant} />}
+              {m.photo && (
+                <figure class={`photo square ${m.photoVariant === "teal" ? "" : m.photoVariant}`.trim()}>
+                  <img src={m.photo} alt={`${m.name}, portrait`} loading="lazy" />
+                </figure>
+              )}
               <h3>{m.name}</h3>
               <p class="role">{m.role}</p>
               <Bio />
@@ -107,12 +151,16 @@ const team = await Promise.all(
     </div>
   </section>
 
-  <section class="section band-ink center closing-cta">
-    <div class="wrap measure">
-      <p class="display">This is a story still being&nbsp;written. Yours can be part&nbsp;of&nbsp;it.</p>
-      <div class="hero-cta closing-cta-buttons">
+  <!-- Closing -->
+  <section class="closing" aria-labelledby="story-close-h">
+    <div class="closing-media">
+      <img src={u(path, 1600)} sizes="100vw" width="1600" height="900" loading="lazy" alt="A path leading toward the morning light." />
+    </div>
+    <div class="wrap">
+      <h2 class="display" id="story-close-h">This is a story still being written. Yours can be part of <em>it.</em></h2>
+      <div class="closing-cta">
         <a class="btn btn-help btn-lg" href="/get-help">Get support</a>
-        <a class="btn btn-amber btn-lg" href="/get-involved#donate">Stand with us</a>
+        <a class="btn btn-ghost-light btn-lg" href="/get-involved#donate">Stand with us</a>
       </div>
     </div>
   </section>

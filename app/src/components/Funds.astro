@@ -6,7 +6,7 @@ import { funds } from "../config";
   {funds.map((f) => (
     <div class="fund">
       <div class="fund-head"><span>{f.label}</span><b>{f.pct}%</b></div>
-      <div class="fund-track"><div class="fund-fill" data-pct={f.pct}></div></div>
+      <div class="fund-track"><div class={`fund-fill ${f.color}`} style={`--pct:${f.pct}%`} data-pct={f.pct}></div></div>
     </div>
   ))}
 </div>

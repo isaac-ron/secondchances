@@ -1,15 +1,40 @@
 ---
+// Full-bleed cinematic hero: graded photo behind, gradient scrims via CSS,
+// content in .hero-inner (staggered entrance + light parallax in app.js).
+// variant="soft" uses a gentler scrim + teal light for the calmer pages.
 interface Props {
   image: string;
   alt: string;
+  srcset?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
+  eager?: boolean;
+  labelledby?: string;
   variant?: "cinematic" | "soft";
   minHeight?: string;
-  eager?: boolean;
 }
-const { image, alt, variant = "cinematic", minHeight, eager = true } = Astro.props;
-const cls = variant === "soft" ? "hero hero--cinematic soft" : "hero hero--cinematic";
+const {
+  image, alt, srcset, sizes = "100vw",
+  width = 1600, height = 900, eager = true, labelledby,
+  variant = "cinematic", minHeight,
+} = Astro.props;
+const cls = variant === "soft" ? "hero soft" : "hero";
 ---
-<section class={cls} style={minHeight ? `min-height:${minHeight}` : undefined}>
-  <img src={image} alt={alt} loading={eager ? "eager" : "lazy"} />
-  <div class="wrap"><slot /></div>
+<section class={cls} style={minHeight ? `min-height:${minHeight}` : undefined} aria-labelledby={labelledby}>
+  <div class="hero-media">
+    <img
+      src={image}
+      srcset={srcset}
+      sizes={sizes}
+      width={width}
+      height={height}
+      alt={alt}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : undefined}
+    />
+  </div>
+  <div class="wrap">
+    <div class="hero-inner"><slot /></div>
+  </div>
 </section>
