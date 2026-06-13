@@ -1,0 +1,269 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+
+const u = (id: string, w: number) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
+const heroId = "photo-1568667256549-094345857637"; // documents / stacked papers
+
+const allReports = (await getCollection("reports"))
+  .sort((a, b) => b.data.year - a.data.year || b.data.publishDate.localeCompare(a.data.publishDate));
+
+const byYear = allReports.reduce<Record<number, typeof allReports>>((acc, r) => {
+  (acc[r.data.year] ??= []).push(r);
+  return acc;
+}, {});
+const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
+
+const formatDate = (d: string) => {
+  const [y, m, day] = d.split("-").map(Number);
+  return new Date(y, m - 1, day).toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric",
+  });
+};
+
+const catColor = (cat: string) => {
+  if (cat === "Annual Report") return "teal";
+  if (cat === "Financial Report") return "ink";
+  return "amber";
+};
+---
+<BaseLayout
+  title="Reports & Accountability"
+  description="Annual reports, programme updates and financial statements from Second Chances Kenya — published openly so our community can hold us to account."
+  current="updates"
+>
+  <Hero
+    variant="soft"
+    labelledby="reports-h"
+    image={u(heroId, 1600)}
+    srcset={`${u(heroId, 1200)} 1200w, ${u(heroId, 1600)} 1600w, ${u(heroId, 2000)} 2000w`}
+    alt="A stack of documents and an open notebook on a clean desk."
+  >
+    <span class="label" style="color:var(--teal-lt)">Transparency</span>
+    <h1 class="display" id="reports-h" style="margin-top:0.6rem">We show our <em>working.</em></h1>
+    <p class="hero-lead">Every shilling we receive is accounted for here. Annual reports, programme reviews, and financial statements — published openly so our community can hold us to account.</p>
+  </Hero>
+
+  <!-- Reports by year -->
+  <section class="section" aria-label="Reports archive">
+    <div class="wrap">
+
+      {years.length === 0 && (
+        <p class="empty-state">Reports will appear here as they are published.</p>
+      )}
+
+      {years.map((year) => (
+        <div class="year-group" data-reveal>
+          <h2 class="year-heading">{year}</h2>
+          <div class="reports-grid">
+            {byYear[year].map((report) => (
+              <article class="report-card">
+                <div class="report-card-thumb" aria-hidden="true">
+                  {report.data.cover
+                    ? <img src={report.data.cover} alt="" width="240" height="320" loading="lazy" />
+                    : <div class="report-doc-icon">
+                        <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <rect width="48" height="60" rx="2" fill="var(--teal-pale,#e6f4f1)" />
+                          <path d="M12 20h24M12 28h24M12 36h16" stroke="var(--teal-deep)" stroke-width="2.5" stroke-linecap="round" />
+                          <path d="M32 4v10h10" fill="none" stroke="var(--teal-mid,#5aabab)" stroke-width="2" stroke-linejoin="round" />
+                          <path d="M32 4H4v52h40V14L32 4Z" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                  }
+                  <span class="report-type-chip" style={`background:var(--${catColor(report.data.category)}-pale,#e6f4f1);color:var(--${catColor(report.data.category)}-deep)`}>
+                    {report.data.category}
+                  </span>
+                </div>
+                <div class="report-card-body">
+                  <h3 class="report-title">{report.data.title}</h3>
+                  <p class="label" style="color:var(--ink-faint);margin-top:0.3rem">{formatDate(report.data.publishDate)}</p>
+                  {report.data.description && (
+                    <p class="report-desc">{report.data.description}</p>
+                  )}
+                  <div class="report-actions">
+                    {report.data.file
+                      ? <a class="btn btn-outline" href={report.data.file} target="_blank" rel="noopener" download>
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="16" height="16"><path d="M12 3v13m-5-5 5 5 5-5M3 21h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                          Download PDF
+                        </a>
+                      : <span class="label coming-soon">Coming soon</span>
+                    }
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- Accountability band -->
+  <section class="section band" aria-label="Accountability commitment">
+    <div class="wrap">
+      <div class="accountability-split" data-reveal>
+        <div>
+          <span class="label" style="color:var(--teal-lt)">Our commitment</span>
+          <h2 class="h3" style="margin-top:0.5rem">Radical transparency is not optional for us.</h2>
+          <p style="color:var(--sand);margin-top:0.9rem;line-height:1.75">We work with some of the most vulnerable young people in Kenya. That trust demands we publish what we do, how we spend, and where we fall short — every year, without exception.</p>
+          <p style="color:var(--sand);margin-top:0.8rem;line-height:1.75">If you have a question our reports do not answer, write to us at <a href="mailto:hello@secondchances.co.ke" style="color:var(--amber-lt)">hello@secondchances.co.ke</a>. We will respond within five working days.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start;justify-content:center">
+          <a class="btn btn-amber" href="/get-involved#donate">Support the work</a>
+          <a class="btn btn-outline-light" href="/get-involved#partnerships">Become a partner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.year-group {
+  margin-bottom: 3.5rem;
+}
+
+.year-heading {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--ink);
+  border-bottom: 2px solid var(--teal-deep);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 28rem), 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.report-card {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.4rem;
+  background: var(--white, #fff);
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 1.25rem;
+  align-items: start;
+  transition: box-shadow 0.2s;
+}
+
+.report-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.report-card-thumb {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.report-card-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.report-doc-icon {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-doc-icon svg {
+  width: 100%;
+  height: auto;
+}
+
+.report-type-chip {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-family: var(--display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.report-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.report-title {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.report-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0.65rem 0 0;
+}
+
+.report-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.report-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+}
+
+.coming-soon {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 3rem 0;
+}
+
+/* Accountability band */
+.accountability-split {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.btn-outline-light {
+  border: 1.5px solid rgba(239,234,221,0.35);
+  color: var(--sand, #efe8d1);
+  background: transparent;
+  padding: 0.65rem 1.4rem;
+}
+
+.btn-outline-light:hover {
+  background: rgba(239,234,221,0.08);
+}
+
+@media (max-width: 700px) {
+  .accountability-split {
+    grid-template-columns: 1fr;
+  }
+
+  .report-card {
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+  }
+}
+</style>

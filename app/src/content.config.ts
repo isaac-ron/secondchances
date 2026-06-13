@@ -1,8 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-// The four service pillars. Body (Markdown) holds the in-depth prose used on
-// /how-we-help; `summary` is the short line used on the home page.
 const pillars = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pillars" }),
   schema: z.object({
@@ -17,7 +15,6 @@ const pillars = defineCollection({
   }),
 });
 
-// Consented, anonymised care-leaver voices. `tag` is the short context label.
 const stories = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/stories" }),
   schema: z.object({
@@ -40,7 +37,6 @@ const team = defineCollection({
   }),
 });
 
-// Body (Markdown) holds the answer.
 const faqs = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/faqs" }),
   schema: z.object({
@@ -49,4 +45,32 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { pillars, stories, team, faqs };
+const posts = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdoc}", base: "./src/content/posts" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.string(),
+    category: z.enum(["Announcement", "Update", "Story", "Report"]).default("Update"),
+    excerpt: z.string(),
+    coverPhoto: z.string().optional(),
+    coverPhotoAlt: z.string().default(""),
+    author: z.string().default("Second Chances team"),
+    featured: z.boolean().default(false),
+    order: z.number().default(0),
+  }),
+});
+
+const reports = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/reports" }),
+  schema: z.object({
+    title: z.string(),
+    year: z.number(),
+    publishDate: z.string(),
+    category: z.enum(["Annual Report", "Programme Report", "Financial Report", "Research"]).default("Annual Report"),
+    description: z.string().optional(),
+    file: z.string().optional(),
+    cover: z.string().optional(),
+  }),
+});
+
+export const collections = { pillars, stories, team, faqs, posts, reports };

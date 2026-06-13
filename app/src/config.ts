@@ -24,6 +24,7 @@ export const primaryNav = [
   { href: "/our-story", label: "Our Story", key: "our-story" },
   { href: "/how-we-help", label: "How We Help", key: "how-we-help" },
   { href: "/impact", label: "Our Impact", key: "impact" },
+  { href: "/updates", label: "Our Updates", key: "updates" },
   { href: "/get-involved", label: "Get Involved", key: "get-involved" },
 ];
 
@@ -52,8 +53,9 @@ export const footerColumns = [
     links: [
       { href: "/our-story", label: "Our Story" },
       { href: "/impact", label: "Our Impact" },
+      { href: "/updates", label: "Updates & Announcements" },
       { href: "/safeguarding", label: "Safeguarding" },
-      { href: "/impact#reports", label: "Reports & Accountability" },
+      { href: "/reports", label: "Reports & Accountability" },
       { href: "/contact", label: "Contact" },
     ],
   },
