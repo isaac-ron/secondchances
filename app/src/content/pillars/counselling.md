@@ -8,7 +8,7 @@ bullets:
   - Specialised support for survivors of abuse in care
   - Safe referrals when you need more than we can offer
 cta: Start a confidential conversation
-photo: https://picsum.photos/seed/sc-calm2/950/1180
+photo: /images/pillars/mentorship.jpg
 photoVariant: teal
 ---
 Leaving care often means carrying what happened inside it, including, for some, experiences of abuse and exploitation never acknowledged, never named, never brought to justice. Your story does not have to stay hidden.

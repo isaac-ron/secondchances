@@ -8,7 +8,7 @@ bullets:
   - Legal support for survivors seeking justice
   - Guidance through housing, benefits, and rights
 cta: Get legal support
-photo: https://picsum.photos/seed/sc-justice/950/1180
+photo: /images/pillars/legal-aid.jpg
 photoVariant: purplebright
 ---
 For survivors pursuing justice, and for care leavers navigating rights, documentation, and systems that were never designed with them in mind.

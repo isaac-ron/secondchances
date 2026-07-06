@@ -8,6 +8,11 @@ const u = (id: string, w: number) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
 const hands = "photo-1574740637579-9ca0a610e491";
 
+const getPhotoSrc = (photo: string, w: number) =>
+  photo.startsWith("http") || photo.startsWith("/")
+    ? photo
+    : u(photo, w);
+
 // Per-pillar art direction, keyed by the collection `anchor`.
 const art: Record<string, { icon: string; tone: "teal" | "purplebright"; essence: string; photo: string }> = {
   counselling: { icon: "013-social-care", tone: "teal", essence: "Healing", photo: "photo-1574740637579-9ca0a610e491" },
@@ -29,9 +34,9 @@ const pillars = await Promise.all(
   <Hero
     variant="soft"
     labelledby="help-h"
-    image={u(hands, 1600)}
-    srcset={`${u(hands, 1200)} 1200w, ${u(hands, 1600)} 1600w, ${u(hands, 2000)} 2000w`}
-    alt="Two people's hands, one holding the other steady against soft daylight."
+    image="/holding-hands.jpg"
+    srcset="/holding-hands.jpg 1200w"
+    alt="Two people holding hands in a supportive gesture."
   >
     <span class="label" style="color:var(--purplebright-lt)">How we help</span>
     <h1 class="display" id="help-h" style="margin-top:0.6rem">The same grace we'd extend to our <em>own children.</em></h1>
@@ -52,12 +57,18 @@ const pillars = await Promise.all(
 
     {pillars.map((p, i) => {
       const a = art[p.anchor] ?? { icon: "013-social-care", tone: "teal" as const, essence: "Support", photo: hands };
+      const photoSrc = p.photo ? getPhotoSrc(p.photo, 1200) : u(a.photo, 1200);
+      const photoSrcset = p.photo && p.photo.startsWith("http")
+        ? `${p.photo.replace(/w=\d+/, "w=800")} 800w, ${p.photo} 1200w`
+        : p.photo && !p.photo.startsWith("/")
+        ? `${u(p.photo, 800)} 800w, ${u(p.photo, 1200)} 1200w`
+        : `${photoSrc} 1200w`;
       const Body = p.Content;
       const flip = i % 2 === 0;
       return (
         <article class={`split-bleed${flip ? " flip" : ""}`} id={p.anchor} data-reveal style="scroll-margin-top:5.5rem">
           <div class="media">
-            <img src={u(a.photo, 1200)} srcset={`${u(a.photo, 800)} 800w, ${u(a.photo, 1200)} 1200w`}
+            <img src={photoSrc} srcset={photoSrcset}
                  sizes="(max-width: 940px) 100vw, 50vw" width="1200" height="900" loading="lazy" alt={p.title} />
           </div>
           <div class="copy"><div class="inner">

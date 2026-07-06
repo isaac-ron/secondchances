@@ -5,7 +5,7 @@ anchor: community
 summary: A community of people who believe in second chances, so that no one has to do this alone.
 bullets: []
 cta: Find your people
-photo: https://picsum.photos/seed/sc-together/950/1180
+photo: /images/pillars/community-img.jpg
 photoVariant: teal
 ---
 The opposite of leaving care alone is belonging. Second Chances is a community of people who have walked this road, and people who believe in second chances, so that no one has to do this by themselves.

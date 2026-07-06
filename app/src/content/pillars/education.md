@@ -8,7 +8,7 @@ bullets:
   - Vocational and skills training pathways
   - Guidance toward work and independence
 cta: Explore your options
-photo: https://picsum.photos/seed/sc-study/950/1180
+photo: /images/pillars/education-img.jpg
 photoVariant: teal
 ---
 A discontinued sponsorship should not mean a discontinued future. We reconnect young people with education, learning, and skills pathways that meet them exactly where they are now.
