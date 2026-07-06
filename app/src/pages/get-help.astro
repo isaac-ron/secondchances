@@ -115,7 +115,7 @@ const tel = contact.generalPhone.replace(/\s/g, "");
             <textarea name="message" rows="4" required placeholder="You can write anything. Even just 'I don't know where to start' is enough."></textarea>
           </label>
           <label style="display:grid;gap:.5rem">
-            <span class="label" style="color:var(--ink-soft)">How can we reach you? <em style="font-style:italic;color:var(--ink-faint)">(optional, leave blank to stay anonymous)</em></span>
+            <span class="label" style="color:var(--ink-soft)">How can we reach you? <em style="font-style:italic;color:var(--ink-faint)">(required)</em></span>
             <input type="text" name="contact" placeholder="Phone, WhatsApp, or email, only if you want a reply" />
           </label>
           {sitekey && <div class="cf-turnstile" data-sitekey={sitekey}></div>}
