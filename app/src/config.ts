@@ -12,10 +12,10 @@ export const site = {
 
 export const contact = {
   generalEmail: "hello@secondchances.co.ke",
-  generalPhone: "+254 700 000 000",
+  generalPhone: "+254 727 163 621",
   safeguardingEmail: "safeguarding@secondchances.co.ke",
-  safeguardingPhone: "+254 700 000 111",
-  whatsapp: "+254 700 000 000",
+  safeguardingPhone: "+254 789 271 381",
+  whatsapp: "+254 727 163 621",
   location: "Nairobi, Kenya",
 };
 
@@ -61,9 +61,8 @@ export const footerColumns = [
   },
 ];
 
-// Illustrative allocation — replace with audited figures before launch.
+
 export const funds = [
-  { label: "Direct support & stabilisation", pct: 70, color: "teal" },
-  { label: "Education & vocational training", pct: 20, color: "amber" },
-  { label: "Operations & safeguarding", pct: 10, color: "ink" },
+  { label: "Support for Young Persons (Education, Legal Aid, Counselling and Mentorship)", pct: 80, color: "teal" },
+  { label: "Operations & safeguarding", pct: 20, color: "purplebright" }
 ] as const;

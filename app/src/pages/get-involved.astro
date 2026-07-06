@@ -23,7 +23,7 @@ const hands = "photo-1574740637579-9ca0a610e491";
     srcset={`${u(path, 1200)} 1200w, ${u(path, 1600)} 1600w, ${u(path, 2000)} 2000w`}
     alt="A path crossing toward open ground and the morning light."
   >
-    <span class="label" style="color:var(--amber-lt)">Stand with us</span>
+    <span class="label" style="color:var(--purplebright-lt)">Stand with us</span>
     <h1 class="display" id="give-h" style="margin-top:0.6rem">Join us in bridging the <em>gap.</em></h1>
     <p class="hero-lead">A donor is not buying a service. You are co-funding the dignity of a young person standing at the edge of an adult world. Here are four ways to stand with us.</p>
     <div class="hero-cta">
@@ -44,10 +44,16 @@ const hands = "photo-1574740637579-9ca0a610e491";
       <div class="split" style="align-items:start" data-reveal>
         <div>
           <h3 class="sub">Choose an amount</h3>
+          <div class="currency-filter" role="group" aria-label="Choose donation currency">
+            <button class="currency-pill is-active" type="button" data-currency="KES" aria-pressed="true">KES</button>
+            <button class="currency-pill" type="button" data-currency="USD" aria-pressed="false">USD</button>
+            <button class="currency-pill" type="button" data-currency="EUR" aria-pressed="false">EUR</button>
+          </div>
+          <p class="small muted currency-note">Showing amounts in KES.</p>
           <div class="tiers" style="margin-top:1rem">
-            <button class="tier" type="button"><b>KES 500</b><span>per month</span></button>
-            <button class="tier" type="button"><b>KES 1,500</b><span>per month</span></button>
-            <button class="tier" type="button"><b>KES 5,000</b><span>per month</span></button>
+            <button class="tier" type="button" data-amount-kes="KES 500" data-amount-usd="USD 5" data-amount-eur="EUR 4"><b class="tier-amount">KES 500</b><span>per month</span></button>
+            <button class="tier" type="button" data-amount-kes="KES 1,500" data-amount-usd="USD 15" data-amount-eur="EUR 12"><b class="tier-amount">KES 1,500</b><span>per month</span></button>
+            <button class="tier" type="button" data-amount-kes="KES 5,000" data-amount-usd="USD 50" data-amount-eur="EUR 40"><b class="tier-amount">KES 5,000</b><span>per month</span></button>
             <button class="tier" type="button"><b>Other</b><span>you choose</span></button>
           </div>
 
@@ -59,7 +65,7 @@ const hands = "photo-1574740637579-9ca0a610e491";
           </div>
           <p class="small muted" style="margin-top:1rem">Or give by card, PayPal, or bank transfer, in KES, USD, or GBP for our diaspora and international supporters. <span class="muted">(Card and M-Pesa checkout via Paystack.)</span></p>
           <div class="hero-cta" style="margin-top:1.2rem">
-            <a class="btn btn-amber" href="#">Give by card / M-Pesa</a>
+            <a class="btn btn-purplebright" href="#">Give by card / M-Pesa</a>
             <a class="btn btn-give" href="#">Bank transfer details</a>
           </div>
         </div>
@@ -67,11 +73,48 @@ const hands = "photo-1574740637579-9ca0a610e491";
           <h3 class="sub">Where your gift goes</h3>
           <p class="muted">An honest split. See the full breakdown on <a href="/impact#reports" class="link-arrow inline">Our Impact <span>&rarr;</span></a></p>
           <Funds />
-          <p class="fund-note">Illustrative allocation, replaced with audited figures before launch.</p>
+          {/*<p class="fund-note">Illustrative allocation, replaced with audited figures before launch.</p>*/}
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    type Currency = "KES" | "USD" | "EUR";
+    const currencyPills = Array.from(document.querySelectorAll('.currency-pill'));
+    const tierButtons = Array.from(document.querySelectorAll('.tier'));
+    const currencyNote = document.querySelector('.currency-note');
+
+    const updateDonationCurrency = (currency: Currency) => {
+      currencyPills.forEach((pill) => {
+        const active = pill.getAttribute('data-currency') === currency;
+        pill.classList.toggle('is-active', active);
+        pill.setAttribute('aria-pressed', String(active));
+      });
+
+      const label = currency === 'USD' ? 'Showing amounts in USD.' : currency === 'EUR' ? 'Showing amounts in EUR.' : 'Showing amounts in KES.';
+      if (currencyNote) {
+        currencyNote.textContent = label;
+      }
+
+      tierButtons.forEach((button) => {
+        const amount = button.getAttribute(`data-amount-${currency.toLowerCase()}`);
+        const amountText = button.querySelector('.tier-amount');
+        if (amountText && amount) {
+          amountText.textContent = amount;
+        }
+      });
+    };
+
+    currencyPills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const selectedCurrency = (pill.getAttribute("data-currency") || "KES") as Currency;
+      updateDonationCurrency(selectedCurrency);
+    });
+  });
+
+    updateDonationCurrency('KES');
+  </script>
 
   <!-- Partner -->
   <section class="section band" id="partnerships" aria-labelledby="partner-h" style="scroll-margin-top:5.5rem">
@@ -83,19 +126,19 @@ const hands = "photo-1574740637579-9ca0a610e491";
       </div>
       <div class="channels">
         <article class="channel" data-reveal>
-          <span class="picon sm teal" style="--src:url(/icons/social-security.png)" aria-hidden="true"></span>
+          <span class="picon sm green" style="--src:url(/icons/social-security.png)" aria-hidden="true"></span>
           <h3>Fund a pillar</h3>
           <p>Underwrite counselling, education, or legal aid for a cohort of young people, with clear reporting on outcomes.</p>
           <a class="link-arrow go" href="/contact">Discuss a partnership <span>&rarr;</span></a>
         </article>
         <article class="channel" data-reveal="2">
-          <span class="picon sm teal" style="--src:url(/icons/headhunting.png)" aria-hidden="true"></span>
+          <span class="picon sm green" style="--src:url(/icons/headhunting.png)" aria-hidden="true"></span>
           <h3>Employer pathways</h3>
           <p>Open internships, apprenticeships, or first jobs to care leavers ready for the world of work.</p>
           <a class="link-arrow go" href="/contact">Offer opportunities <span>&rarr;</span></a>
         </article>
         <article class="channel" data-reveal="3">
-          <span class="picon sm amber" style="--src:url(/icons/011-united.png)" aria-hidden="true"></span>
+          <span class="picon sm green" style="--src:url(/icons/011-united.png)" aria-hidden="true"></span>
           <h3>In-kind and pro bono</h3>
           <p>Legal, counselling, training, or professional services contributed by your team.</p>
           <a class="link-arrow go" href="#volunteer">See how to help <span>&rarr;</span></a>
@@ -117,9 +160,9 @@ const hands = "photo-1574740637579-9ca0a610e491";
         <h2 class="h3" id="vol-h" style="margin-top:0.4rem">Money is only one way in.</h2>
         <p class="lead" style="margin-top:0.9rem">Some of the most valuable things you can give are your expertise and your presence.</p>
         <ul class="trust-points" style="margin-top:1.2rem">
-          <li><span class="picon sm teal" style="--src:url(/icons/lawyer.png)" aria-hidden="true"></span><span><b>Pro bono lawyers and counsellors.</b> Lend your practice to survivors and care leavers.</span></li>
-          <li><span class="picon sm teal" style="--src:url(/icons/helping-hand.png)" aria-hidden="true"></span><span><b>Mentors.</b> Be the steady adult who stays.</span></li>
-          <li><span class="picon sm amber" style="--src:url(/icons/006-education.png)" aria-hidden="true"></span><span><b>Trainers and coaches.</b> Share a skill that opens a door.</span></li>
+          <li><span class="picon sm green" style="--src:url(/icons/lawyer.png)" aria-hidden="true"></span><span><b>Pro bono lawyers and counsellors.</b> Lend your practice to young persons and care leavers.</span></li>
+          <li><span class="picon sm green" style="--src:url(/icons/helping-hand.png)" aria-hidden="true"></span><span><b>Mentors.</b> Be the steady adult who stays.</span></li>
+          <li><span class="picon sm green" style="--src:url(/icons/006-education.png)" aria-hidden="true"></span><span><b>Trainers and coaches.</b> Share a skill that opens a door.</span></li>
         </ul>
         <a class="arrow" href="/contact" style="margin-top:1.3rem">Offer your help <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
       </div></div>
@@ -137,7 +180,7 @@ const hands = "photo-1574740637579-9ca0a610e491";
       ) : (
         <form method="POST" action="/api/refer" style="display:grid;gap:1.3rem;margin-top:1.4rem">
           <label style="display:grid;gap:.5rem">
-            <span class="label" style="color:var(--ink-soft)">Tell us about the situation <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+            <span class="label" style="color:var(--ink-soft)">Tell us about the situation <em style="color:var(--purplebright-deep);font-style:normal">(required)</em></span>
             <textarea name="message" rows="4" required placeholder="Who is the young person, and what's happening? Share only what's appropriate; we'll follow up sensitively."></textarea>
           </label>
           <label style="display:grid;gap:.5rem">
@@ -146,7 +189,7 @@ const hands = "photo-1574740637579-9ca0a610e491";
           </label>
           <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
             <button type="submit" class="btn btn-help btn-lg">Send referral</button>
-            <span class="small muted">Handled confidentially in line with our <a href="/safeguarding" style="color:var(--teal-deep)">safeguarding policy</a>.</span>
+            <span class="small muted">Handled confidentially in line with our <a href="/safeguarding" style="color:var(--purpleblue-deep)">safeguarding policy</a>.</span>
           </div>
         </form>
       )}

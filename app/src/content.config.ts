@@ -11,7 +11,7 @@ const pillars = defineCollection({
     bullets: z.array(z.string()).default([]),
     cta: z.string().default("Talk to someone"),
     photo: z.string().optional(),
-    photoVariant: z.enum(["teal", "amber", "ink"]).default("teal"),
+    photoVariant: z.enum(["teal", "purplebright", "ink"]).default("teal"),
   }),
 });
 
@@ -33,7 +33,7 @@ const team = defineCollection({
     role: z.string(),
     order: z.number().default(0),
     photo: z.string().optional(),
-    photoVariant: z.enum(["teal", "amber", "ink"]).default("teal"),
+    photoVariant: z.enum(["teal", "purplebright", "ink"]).default("teal"),
   }),
 });
 

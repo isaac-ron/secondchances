@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Chances — Project Handoff</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #2A9E95;
+    --purplebright: #F0A323;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #777;
+    --paper: #faf6ef;
+    --rule: #e8e0d4;
+    --font-head: 'Oswald', 'Arial Narrow', sans-serif;
+    --font-body: 'Georgia', 'Spectral', serif;
+    --font-mono: 'Courier New', monospace;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: #f4f4f2;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 48px auto;
+    background: #fff;
+    border-top: 4px solid var(--teal);
+    padding: 56px 64px;
+  }
+
+  /* Cover */
+  .cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+  .cover-left {}
+  .cover-label {
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .cover-title {
+    font-family: var(--font-head);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .cover-sub {
+    font-size: 15px;
+    color: var(--ink-mid);
+  }
+  .cover-meta {
+    text-align: right;
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+  .cover-meta strong {
+    color: var(--ink);
+  }
+
+  /* Section */
+  h2 {
+    font-family: var(--font-head);
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 48px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--ink);
+    margin: 28px 0 8px;
+  }
+  p { margin-bottom: 12px; color: var(--ink-mid); }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--teal); }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+  th {
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  td {
+    padding: 10px 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #f0ece5;
+    color: var(--ink-mid);
+  }
+  td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  /* Status badges */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-head);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .badge-done   { background: #d4f0ed; color: #1a7a72; }
+  .badge-todo   { background: #fff3de; color: #9a5f00; }
+  .badge-p2     { background: #f0f0f0; color: #777; }
+
+  /* Code / mono */
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: #f4f0e8;
+    padding: 1px 5px;
+    color: var(--ink);
+  }
+  pre {
+    background: #1e1e1e;
+    color: #d4d0c8;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 20px 24px;
+    margin: 16px 0 24px;
+    overflow-x: auto;
+  }
+  pre .k { color: #8bc5f0; }
+  pre .s { color: #cca760; }
+  pre .c { color: #6a9955; }
+
+  /* Warning / info box */
+  .box {
+    border-left: 3px solid var(--purplebright);
+    background: #fffbf2;
+    padding: 14px 18px;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+  .box p { color: var(--ink-mid); margin-bottom: 6px; }
+  .box p:last-child { margin-bottom: 0; }
+  .box-label {
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--purplebright);
+    margin-bottom: 6px;
+  }
+
+  ul.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 20px;
+  }
+  ul.checklist li {
+    padding: 6px 0 6px 26px;
+    position: relative;
+    font-size: 14px;
+    color: var(--ink-mid);
+    border-bottom: 1px solid #f0ece5;
+  }
+  ul.checklist li:last-child { border-bottom: none; }
+  ul.checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--teal);
+    border-radius: 1px;
+  }
+  ul.checklist li.done::before {
+    background: var(--teal);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-bar {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+  .footer-bar strong { color: var(--teal); }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; border-top-width: 3px; padding: 40px 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="cover-label">Project Handoff Document</div>
+      <div class="cover-title">Second Chances<br>Website</div>
+      <div class="cover-sub">secondchances.co.ke — Design &amp; Build</div>
+    </div>
+    <div class="cover-meta">
+      <div><strong>Prepared by</strong> Ron Isaac</div>
+      <div><strong>Client</strong> Peter Kamau Muthui</div>
+      <div><strong>Organisation</strong> Second Chances / CFFK</div>
+      <div><strong>Date</strong> 14 June 2026</div>
+      <div><strong>Version</strong> 1.0</div>
+    </div>
+  </div>
+
+  <!-- 1. Scope -->
+  <h2>1. What Was Delivered</h2>
+  <p>
+    A fully designed and built Astro website for Second Chances — a Kenya-rooted care-leaver support
+    organisation. The project covers visual identity integration, information architecture, a full
+    11-page site, a CMS integration, serverless form relay, and deployment configuration for
+    Cloudflare Pages.
+  </p>
+
+  <h3>Pages Delivered</h3>
+  <table>
+    <thead>
+      <tr><th>Route</th><th>Purpose</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>/</td><td>Homepage — hero, pillars, founder, news feature, donate CTA</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/our-story</td><td>Founder story, mission, history, parent org CFFK</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/how-we-help</td><td>All four service pillars (counselling, education, legal aid, community) with anchor links</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/impact</td><td>Statistics, fund allocation chart, testimonials, reports link</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/updates</td><td>Blog index — posts from CMS content collection</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/updates/[slug]</td><td>Individual post pages, dynamic from Markdown</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/reports</td><td>Annual reports index, downloadable PDFs</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/get-involved</td><td>Donate (Paystack), partnerships, volunteer, refer</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/get-help</td><td>Sensitive intake form with shared-device safety (tab title obfuscation)</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/contact</td><td>General contact form</td><td><span class="badge badge-done">Done</span></td></tr>
+      <tr><td>/safeguarding</td><td>Safeguarding principles, reporting process, data handling</td><td><span class="badge badge-done">Done</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Component Library</h3>
+  <p>All reusable UI lives in <code>app/src/components/</code>. Nothing is duplicated across pages.</p>
+  <table>
+    <thead><tr><th>Component</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Header.astro</td><td>Responsive nav with mobile drawer, active-page highlighting, ExitButton</td></tr>
+      <tr><td>Footer.astro</td><td>Three-column footer, brand mark, social links, fund disclaimer</td></tr>
+      <tr><td>Hero.astro</td><td>Full-bleed cinematic hero, duotone photo, headline + CTA pair</td></tr>
+      <tr><td>BrandMark.astro</td><td>SVG emblem (3 valid paths) + Oswald wordmark, composable sizes</td></tr>
+      <tr><td>DuotonePhoto.astro</td><td>CSS duotone filter (teal/purplebright) over any image — no faces policy</td></tr>
+      <tr><td>MediaBand.astro</td><td>Full-bleed dark media section — founder / impact stats</td></tr>
+      <tr><td>SectionHead.astro</td><td>Section heading + optional intro text, consistent spacing</td></tr>
+      <tr><td>PillarList.astro</td><td>Four-pillar grid driven by <code>pillars</code> content collection</td></tr>
+      <tr><td>Doors.astro</td><td>Two-panel CTA split — beneficiary path vs. donor/partner path</td></tr>
+      <tr><td>Callout.astro</td><td>Teal or purplebright accent pull-quote / emphasis block</td></tr>
+      <tr><td>Faq.astro</td><td>Collapsible FAQ accordion from CMS collection</td></tr>
+      <tr><td>Funds.astro</td><td>Animated fund-allocation bar driven by <code>config.ts</code></td></tr>
+      <tr><td>ExitButton.astro</td><td>Shared-device safety — instant page exit to neutral URL</td></tr>
+    </tbody>
+  </table>
+
+  <h3>CMS Content Collections</h3>
+  <p>All content is stored as Markdown in <code>app/src/content/</code> with Zod-typed frontmatter schemas. Peter's team can edit directly in the Keystatic Admin UI at <code>/keystatic</code> once deployed.</p>
+  <table>
+    <thead><tr><th>Collection</th><th>Items</th><th>What to edit</th></tr></thead>
+    <tbody>
+      <tr><td>pillars</td><td>4</td><td>Service pillar descriptions, icons</td></tr>
+      <tr><td>team</td><td>3</td><td>Staff profiles (name, role, bio, photo)</td></tr>
+      <tr><td>stories</td><td>3</td><td>Anonymised beneficiary stories</td></tr>
+      <tr><td>faqs</td><td>5</td><td>Get Help FAQ answers</td></tr>
+      <tr><td>posts</td><td>4</td><td>Updates / blog posts</td></tr>
+      <tr><td>reports</td><td>1</td><td>Annual reports (title, year, PDF URL)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 2. Tech Stack -->
+  <h2>2. Technology Stack</h2>
+  <table>
+    <thead><tr><th>Concern</th><th>Choice</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Framework</td><td>Astro 5.18</td><td>Static-first; near-zero JS shipped to browser</td></tr>
+      <tr><td>Adapter</td><td>@astrojs/cloudflare</td><td>Hybrid SSR for form endpoints</td></tr>
+      <tr><td>CMS</td><td>Keystatic</td><td>Git-backed; config at <code>app/keystatic.config.ts</code></td></tr>
+      <tr><td>Hosting</td><td>Cloudflare Pages + Workers</td><td>Africa-edge CDN; generous free tier</td></tr>
+      <tr><td>Email relay</td><td>Postmark</td><td>Forms POST to <code>/api/get-help</code>, <code>/api/contact</code>, <code>/api/refer</code></td></tr>
+      <tr><td>Donations</td><td>Paystack</td><td>Hosted checkout — M-Pesa + cards + PCI</td></tr>
+      <tr><td>Spam protection</td><td>Cloudflare Turnstile</td><td>Privacy-safe; no reCAPTCHA (vulnerable audience)</td></tr>
+      <tr><td>Analytics</td><td>Cloudflare Web Analytics</td><td>Cookieless; no Google Analytics per DPA</td></tr>
+      <tr><td>Typeface</td><td>Oswald (Google Fonts)</td><td>Substitute for licensed Tungsten; swap at launch</td></tr>
+      <tr><td>Domain</td><td>secondchances.co.ke</td><td>Already owned; canonical; others 301</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3. Deploy -->
+  <h2>3. Deployment Steps</h2>
+  <p>The Astro project lives in the <code>app/</code> subfolder of the repository. Cloudflare Pages must be told to build from that directory.</p>
+
+  <h3>Cloudflare Pages Settings</h3>
+  <table>
+    <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Root directory</td><td><code>app</code></td></tr>
+      <tr><td>Build command</td><td><code>npm run build</code></td></tr>
+      <tr><td>Output directory</td><td><code>dist</code></td></tr>
+      <tr><td>Node version</td><td>20+</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Environment Variables Required</h3>
+  <div class="box">
+    <div class="box-label">Action required</div>
+    <p>These variables must be set in Cloudflare Pages > Settings > Environment Variables before the first production deploy. None are committed to the repository.</p>
+  </div>
+  <table>
+    <thead><tr><th>Variable</th><th>Where to get it</th></tr></thead>
+    <tbody>
+      <tr><td><code>POSTMARK_TOKEN</code></td><td>Postmark account > API Tokens</td></tr>
+      <tr><td><code>RELAY_TO</code></td><td>The inbox address forms should deliver to (e.g. <code>hello@secondchances.co.ke</code>)</td></tr>
+      <tr><td><code>TURNSTILE_SECRET</code></td><td>Cloudflare Dashboard > Turnstile > your widget</td></tr>
+      <tr><td><code>PUBLIC_TURNSTILE_SITEKEY</code></td><td>Same Turnstile widget (the public key)</td></tr>
+      <tr><td><code>PUBLIC_PAYSTACK_KEY</code></td><td>Paystack Dashboard > Settings > API Keys > Public Key</td></tr>
+      <tr><td><code>KEYSTATIC_GITHUB_CLIENT_ID</code></td><td>GitHub OAuth App (for Keystatic CMS production auth)</td></tr>
+      <tr><td><code>KEYSTATIC_GITHUB_CLIENT_SECRET</code></td><td>Same GitHub OAuth App</td></tr>
+      <tr><td><code>KEYSTATIC_SECRET</code></td><td>Any 32+ char random string (session signing)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Keystatic CMS — Production Mode</h3>
+  <p>During development Keystatic uses <code>kind: local</code> (no auth required). For production switch to <code>kind: github</code> in <code>app/keystatic.config.ts</code> and register a GitHub OAuth App pointing to <code>https://secondchances.co.ke/api/keystatic/github/oauth/callback</code>.</p>
+
+  <h3>DNS</h3>
+  <p>Point <code>secondchances.co.ke</code> (CNAME or A) to the Cloudflare Pages domain. Add 301 redirects for any other variants (.com, .org) in the Cloudflare Pages redirect rules or <code>_redirects</code> file.</p>
+
+  <!-- 4. What's Pending -->
+  <h2>4. Remaining Items Before Launch</h2>
+
+  <h3>Must-Do (P1 — Launch Blockers)</h3>
+  <ul class="checklist">
+    <li>Set all environment variables in Cloudflare Pages (see Section 3)</li>
+    <li>Replace Unsplash placeholder images with commissioned/licensed photography</li>
+    <li>Update placeholder contact numbers in <code>app/src/config.ts</code> (currently <code>+254 700 000 000</code>)</li>
+    <li>Self-host Oswald (or license Tungsten) — remove Google Fonts CDN call for performance + privacy</li>
+    <li>Write and publish Privacy Notice (Kenya Data Protection Act 2019 — ODPC registration)</li>
+    <li>Write and publish Terms of Use</li>
+    <li>Wire Paystack: replace <code>PUBLIC_PAYSTACK_KEY</code> placeholder with live key; test M-Pesa + card flows</li>
+    <li>Configure and test Postmark relay for all three form endpoints (get-help / contact / refer)</li>
+    <li>Create Cloudflare Turnstile widget; add site key + secret to env vars</li>
+    <li>Final content review by Peter's team — team bios, pillar descriptions, impact figures</li>
+    <li>Add real annual report PDF URL to <code>app/src/content/reports/annual-report-2024.md</code></li>
+    <li>Verify fund allocation percentages (<code>app/src/config.ts</code> — currently illustrative)</li>
+    <li>DNS cutover to secondchances.co.ke; test all routes 200; check redirects</li>
+  </ul>
+
+  <h3>Phase 2 (Post-Launch Enhancements)</h3>
+  <ul class="checklist">
+    <li>Kiswahili translation (Astro i18n routing — scaffold already in place)</li>
+    <li>Native M-Pesa STK Push via Safaricom Daraja (smoother in-page donation flow)</li>
+    <li>Resources &amp; Guides page (currently 404 — linked in footer)</li>
+    <li>Switch analytics to Plausible if Cloudflare Web Analytics proves insufficient</li>
+    <li>Keystatic GitHub mode (CMS in production) — requires GitHub OAuth App setup</li>
+  </ul>
+
+  <!-- 5. Site Config -->
+  <h2>5. Key Configuration Files</h2>
+  <table>
+    <thead><tr><th>File</th><th>What it controls</th></tr></thead>
+    <tbody>
+      <tr><td><code>app/src/config.ts</code></td><td>Site name, contact info, nav links, footer links, fund allocations — single source of truth for the whole site</td></tr>
+      <tr><td><code>app/src/content.config.ts</code></td><td>Zod schemas for all CMS content collections</td></tr>
+      <tr><td><code>app/keystatic.config.ts</code></td><td>Keystatic CMS collections, field definitions, storage mode (local → github for prod)</td></tr>
+      <tr><td><code>app/astro.config.mjs</code></td><td>Astro adapter, integrations, i18n, site URL</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 6. Brand -->
+  <h2>6. Brand &amp; Design Tokens</h2>
+  <div class="two-col">
+    <div>
+      <h3>Colours</h3>
+      <table>
+        <thead><tr><th>Token</th><th>Hex</th></tr></thead>
+        <tbody>
+          <tr><td>Teal (primary)</td><td><code>#2A9E95</code></td></tr>
+          <tr><td>purplebright (accent)</td><td><code>#F0A323</code></td></tr>
+          <tr><td>Ink</td><td><code>#1a1a1a</code></td></tr>
+          <tr><td>Paper</td><td><code>#faf6ef</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Typography</h3>
+      <table>
+        <thead><tr><th>Role</th><th>Face</th></tr></thead>
+        <tbody>
+          <tr><td>Display / headings</td><td>Oswald (→ Tungsten when licensed)</td></tr>
+          <tr><td>Body</td><td>Georgia / Spectral</td></tr>
+          <tr><td>Logo mark</td><td>SVG paths in <code>BrandMark.astro</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-label">Logo note</div>
+    <p>The master SVG <code>secondchanceslogo.svg</code> has a malformed first path (missing <code>d="</code> attribute). <code>BrandMark.astro</code> uses only the three valid coloured emblem paths with the wordmark as HTML text. Do not rely on the root SVG file as-is for print or third-party use — it needs repair before sending to a printer or designer.</p>
+  </div>
+
+  <!-- 7. Security & Privacy -->
+  <h2>7. Security &amp; Privacy Notes</h2>
+  <ul class="checklist">
+    <li class="done">Forms use server-side relay — no data stored in a database (data minimisation)</li>
+    <li class="done">No Google Analytics — cookieless, privacy-first analytics only</li>
+    <li class="done">No reCAPTCHA — Cloudflare Turnstile (no cross-site tracking)</li>
+    <li class="done">Shared-device safety on Get Help page (neutral tab title, quick Exit button)</li>
+    <li class="done">No identifying photographs of beneficiaries — duotone treatment policy</li>
+    <li>Privacy Notice required before launch (Kenya Data Protection Act 2019)</li>
+    <li>ODPC registration as data controller — Peter's team to initiate</li>
+    <li>TLS enforced via Cloudflare (automatic)</li>
+  </ul>
+
+  <!-- 8. Handoff checklist -->
+  <h2>8. Handoff Checklist</h2>
+  <ul class="checklist">
+    <li class="done">Source code delivered (GitHub repository)</li>
+    <li class="done">All pages built and verified locally (11 routes, 200 OK)</li>
+    <li class="done">Component library documented above</li>
+    <li class="done">Content collections seeded with representative content</li>
+    <li class="done">Keystatic CMS configured (local dev mode)</li>
+    <li class="done">Form API endpoints scaffolded (<code>/api/get-help</code>, <code>/api/contact</code>, <code>/api/refer</code>)</li>
+    <li class="done">Cloudflare Pages adapter configured</li>
+    <li>Client walk-through session completed</li>
+    <li>Login credentials transferred (Cloudflare, Postmark, Paystack, GitHub)</li>
+    <li>DNS transferred or access granted to client's registrar</li>
+    <li>30-day post-launch support window agreed</li>
+  </ul>
+
+  <!-- Footer -->
+  <div class="footer-bar">
+    <div>Second Chances Website — Handoff v1.0 — June 2026</div>
+    <div>Prepared by <strong>Ron Isaac</strong></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -16,7 +16,7 @@ const featured = allPosts.find((p) => p.data.featured);
 const rest = allPosts.filter((p) => p !== featured);
 
 const catColor = (cat: string) =>
-  cat === "Announcement" || cat === "Story" ? "amber" : "teal";
+  cat === "Announcement" || cat === "Story" ? "purplebright" : "teal";
 
 const formatDate = (d: string) => {
   const [y, m, day] = d.split("-").map(Number);
@@ -39,7 +39,7 @@ const fallback = u("photo-1567095199396-d4e5588a3cb8", 1200);
     srcset={`${u(heroId, 1200)} 1200w, ${u(heroId, 1600)} 1600w, ${u(heroId, 2000)} 2000w`}
     alt="An open notebook and pen on a desk in warm morning light."
   >
-    <span class="label" style="color:var(--amber-lt)">Field notes</span>
+    <span class="label" style="color:var(--purplebright-lt)">Field notes</span>
     <h1 class="display" id="updates-h" style="margin-top:0.6rem">Updates from Second <em>Chances.</em></h1>
     <p class="hero-lead">Small, steady progress — shared honestly as it happens. Programme news, stories from the work, and accountability reports.</p>
   </Hero>
@@ -198,7 +198,7 @@ const fallback = u("photo-1567095199396-d4e5588a3cb8", 1200);
 }
 
 .post-card-body h3 a:hover {
-  color: var(--teal-deep);
+  color: var(--purpleblue-deep);
 }
 
 .post-card-body p {

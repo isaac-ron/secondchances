@@ -9,11 +9,11 @@ const u = (id: string, w: number) =>
 const hands = "photo-1574740637579-9ca0a610e491";
 
 // Per-pillar art direction, keyed by the collection `anchor`.
-const art: Record<string, { icon: string; tone: "teal" | "amber"; essence: string; photo: string }> = {
+const art: Record<string, { icon: string; tone: "teal" | "purplebright"; essence: string; photo: string }> = {
   counselling: { icon: "013-social-care", tone: "teal", essence: "Healing", photo: "photo-1574740637579-9ca0a610e491" },
-  education: { icon: "005-graduation-cap", tone: "amber", essence: "Learning", photo: "photo-1550592704-6c76defa9985" },
+  education: { icon: "005-graduation-cap", tone: "purplebright", essence: "Learning", photo: "photo-1550592704-6c76defa9985" },
   "legal-aid": { icon: "004-balance", tone: "teal", essence: "Justice", photo: "photo-1632152133952-98b268dc4b86" },
-  community: { icon: "012-group", tone: "amber", essence: "Belonging", photo: "photo-1582213782179-e0d53f98f2ca" },
+  community: { icon: "012-group", tone: "purplebright", essence: "Belonging", photo: "photo-1582213782179-e0d53f98f2ca" },
 };
 
 const entries = (await getCollection("pillars")).sort((a, b) => a.data.order - b.data.order);
@@ -33,7 +33,7 @@ const pillars = await Promise.all(
     srcset={`${u(hands, 1200)} 1200w, ${u(hands, 1600)} 1600w, ${u(hands, 2000)} 2000w`}
     alt="Two people's hands, one holding the other steady against soft daylight."
   >
-    <span class="label" style="color:var(--amber-lt)">How we help</span>
+    <span class="label" style="color:var(--purplebright-lt)">How we help</span>
     <h1 class="display" id="help-h" style="margin-top:0.6rem">The same grace we'd extend to our <em>own children.</em></h1>
     <p class="hero-lead">Because that is exactly what they are. Four ways we stand with every young person who comes to us, only ever what you want, when you're ready.</p>
     <div class="hero-cta">
@@ -68,7 +68,7 @@ const pillars = await Promise.all(
               <ul class="trust-points" style="margin-top:1.3rem;gap:0.9rem">
                 {p.bullets.map((b) => (
                   <li>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" style="color:var(--teal-deep)" /><path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal-deep)" /></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" style="color:var(--purpleblue-deep)" /><path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--purpleblue-deep)" /></svg>
                     <span>{b}</span>
                   </li>
                 ))}

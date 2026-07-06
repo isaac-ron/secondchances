@@ -9,7 +9,7 @@ bullets:
   - Guidance through housing, benefits, and rights
 cta: Get legal support
 photo: https://picsum.photos/seed/sc-justice/950/1180
-photoVariant: amber
+photoVariant: purplebright
 ---
 For survivors pursuing justice, and for care leavers navigating rights, documentation, and systems that were never designed with them in mind.
 

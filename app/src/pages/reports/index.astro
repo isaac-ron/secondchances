@@ -26,7 +26,7 @@ const formatDate = (d: string) => {
 const catColor = (cat: string) => {
   if (cat === "Annual Report") return "teal";
   if (cat === "Financial Report") return "ink";
-  return "amber";
+  return "purplebright";
 };
 ---
 <BaseLayout
@@ -66,9 +66,9 @@ const catColor = (cat: string) => {
                     : <div class="report-doc-icon">
                         <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                           <rect width="48" height="60" rx="2" fill="var(--teal-pale,#e6f4f1)" />
-                          <path d="M12 20h24M12 28h24M12 36h16" stroke="var(--teal-deep)" stroke-width="2.5" stroke-linecap="round" />
+                          <path d="M12 20h24M12 28h24M12 36h16" stroke="var(--purpleblue-deep)" stroke-width="2.5" stroke-linecap="round" />
                           <path d="M32 4v10h10" fill="none" stroke="var(--teal-mid,#5aabab)" stroke-width="2" stroke-linejoin="round" />
-                          <path d="M32 4H4v52h40V14L32 4Z" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linejoin="round" />
+                          <path d="M32 4H4v52h40V14L32 4Z" fill="none" stroke="var(--purpleblue-deep)" stroke-width="2" stroke-linejoin="round" />
                         </svg>
                       </div>
                   }
@@ -109,10 +109,10 @@ const catColor = (cat: string) => {
           <span class="label" style="color:var(--teal-lt)">Our commitment</span>
           <h2 class="h3" style="margin-top:0.5rem">Radical transparency is not optional for us.</h2>
           <p style="color:var(--sand);margin-top:0.9rem;line-height:1.75">We work with some of the most vulnerable young people in Kenya. That trust demands we publish what we do, how we spend, and where we fall short — every year, without exception.</p>
-          <p style="color:var(--sand);margin-top:0.8rem;line-height:1.75">If you have a question our reports do not answer, write to us at <a href="mailto:hello@secondchances.co.ke" style="color:var(--amber-lt)">hello@secondchances.co.ke</a>. We will respond within five working days.</p>
+          <p style="color:var(--sand);margin-top:0.8rem;line-height:1.75">If you have a question our reports do not answer, write to us at <a href="mailto:hello@secondchances.co.ke" style="color:var(--purplebright-lt)">hello@secondchances.co.ke</a>. We will respond within five working days.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start;justify-content:center">
-          <a class="btn btn-amber" href="/get-involved#donate">Support the work</a>
+          <a class="btn btn-purplebright" href="/get-involved#donate">Support the work</a>
           <a class="btn btn-outline-light" href="/get-involved#partnerships">Become a partner</a>
         </div>
       </div>
@@ -129,7 +129,7 @@ const catColor = (cat: string) => {
   font-family: var(--display);
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   color: var(--ink);
-  border-bottom: 2px solid var(--teal-deep);
+  border-bottom: 2px solid var(--purpleblue-deep);
   padding-bottom: 0.6rem;
   margin-bottom: 1.8rem;
 }

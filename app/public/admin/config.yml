@@ -26,7 +26,7 @@ collections:
       - { name: bullets, label: Bullets, widget: list, required: false }
       - { name: cta, label: CTA label, widget: string, default: "Talk to someone" }
       - { name: photo, label: Photo URL, widget: string, required: false }
-      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "amber", "ink"], default: "teal" }
+      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "purplebright", "ink"], default: "teal" }
       - { name: body, label: In-depth (How We Help), widget: markdown }
 
   - name: stories
@@ -52,7 +52,7 @@ collections:
       - { name: role, label: Role, widget: string }
       - { name: order, label: Order, widget: number, value_type: int, default: 0 }
       - { name: photo, label: Photo URL, widget: string, required: false }
-      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "amber", "ink"], default: "teal" }
+      - { name: photoVariant, label: Photo tint, widget: select, options: ["teal", "purplebright", "ink"], default: "teal" }
       - { name: body, label: Short bio, widget: markdown }
 
   - name: faqs

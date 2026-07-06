@@ -23,7 +23,7 @@ const path = "photo-1567095199396-d4e5588a3cb8";
     srcset={`${u(path, 1200)} 1200w, ${u(path, 1600)} 1600w, ${u(path, 2000)} 2000w`}
     alt="An open landscape at dawn."
   >
-    <span class="label" style="color:var(--amber-lt)">Contact</span>
+    <span class="label" style="color:var(--purplebright-lt)">Contact</span>
     <h1 class="display" id="contact-h" style="margin-top:0.6rem">Let's <em>talk.</em></h1>
     <p class="hero-lead">For partnerships, media, volunteering, or general enquiries. If you're a young person who needs support, you're welcome here too, though <a href="/get-help">Get Help</a> is the gentlest place to start.</p>
   </Hero>
@@ -35,22 +35,22 @@ const path = "photo-1567095199396-d4e5588a3cb8";
         <h2 class="h2 title" id="reach-h" style="margin-top:0.5rem">Get in touch.</h2>
         <div class="reassure" style="grid-template-columns:1fr;gap:1.6rem;margin-top:1.6rem">
           <div>
-            <span class="picon sm teal" style="--src:url(/icons/010-communication.png);margin-bottom:0.55rem" aria-hidden="true"></span>
+            <span class="picon sm green" style="--src:url(/icons/010-communication.png);margin-bottom:0.55rem" aria-hidden="true"></span>
             <h4>General and partnerships</h4>
-            <p><a href={`mailto:${contact.generalEmail}`} style="color:var(--teal-deep)">{contact.generalEmail}</a><br />{contact.generalPhone}</p>
+            <p><a href={`mailto:${contact.generalEmail}`} style="color:var(--purpleblue-deep)">{contact.generalEmail}</a><br />{contact.generalPhone}</p>
           </div>
           <div>
-            <span class="picon sm amber" style="--src:url(/icons/015-shield.png);margin-bottom:0.55rem" aria-hidden="true"></span>
+            <span class="picon sm green" style="--src:url(/icons/015-shield.png);margin-bottom:0.55rem" aria-hidden="true"></span>
             <h4>Safeguarding concerns</h4>
-            <p><a href="/safeguarding" style="color:var(--teal-deep)">Report a concern</a> · {contact.safeguardingEmail}<br />{contact.safeguardingPhone}</p>
+            <p><a href="/safeguarding" style="color:var(--purpleblue-deep)">Report a concern</a> · {contact.safeguardingEmail}<br />{contact.safeguardingPhone}</p>
           </div>
           <div>
-            <span class="picon sm teal" style="--src:url(/icons/map.png);margin-bottom:0.55rem" aria-hidden="true"></span>
+            <span class="picon sm green" style="--src:url(/icons/map.png);margin-bottom:0.55rem" aria-hidden="true"></span>
             <h4>Where to find us</h4>
             <p>{contact.location}<br />A {site.parentOrg} initiative</p>
           </div>
           <div>
-            <span class="picon sm teal" style="--src:url(/icons/011-united.png);margin-bottom:0.55rem" aria-hidden="true"></span>
+            <span class="picon sm green" style="--src:url(/icons/011-united.png);margin-bottom:0.55rem" aria-hidden="true"></span>
             <h4>Follow along</h4>
             <p>Instagram · X · LinkedIn · Facebook <span class="small muted">(@secondchances)</span></p>
           </div>
@@ -69,12 +69,13 @@ const path = "photo-1567095199396-d4e5588a3cb8";
               <input type="text" name="name" placeholder="Name" />
             </label>
             <label style="display:grid;gap:.5rem">
-              <span class="label" style="color:var(--ink-soft)">Email <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+              <span class="label" style="color:var(--ink-soft)">Email <em style="color:var(--purplebright-deep);font-style:normal">(required)</em></span>
               <input type="email" name="email" required placeholder="you@example.com" />
             </label>
             <label style="display:grid;gap:.5rem">
               <span class="label" style="color:var(--ink-soft)">What's this about?</span>
               <select name="topic">
+                <option value="" disabled selected hidden>Select an option</option>
                 <option>General enquiry</option>
                 <option>Partnership or funding</option>
                 <option>Volunteering / pro bono</option>
@@ -83,7 +84,7 @@ const path = "photo-1567095199396-d4e5588a3cb8";
               </select>
             </label>
             <label style="display:grid;gap:.5rem">
-              <span class="label" style="color:var(--ink-soft)">Message <em style="color:var(--amber-deep);font-style:normal">(required)</em></span>
+              <span class="label" style="color:var(--ink-soft)">Message <em style="color:var(--purplebright-deep);font-style:normal">(required)</em></span>
               <textarea name="message" rows="4" required placeholder="How can we help?"></textarea>
             </label>
             <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">

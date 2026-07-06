@@ -18,7 +18,7 @@ const photoVariantField = fields.select({
   description: "Applies a colour overlay to the photo to match the site's brand palette.",
   options: [
     { label: "Teal (default)", value: "teal" },
-    { label: "Amber", value: "amber" },
+    { label: "purplebright", value: "purplebright" },
     { label: "Ink (dark)", value: "ink" },
   ],
   defaultValue: "teal",

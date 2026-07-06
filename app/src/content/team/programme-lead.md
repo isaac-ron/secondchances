@@ -1,8 +1,8 @@
 ---
-name: Programme Lead
-role: Counselling & Healing
+name: Purity Waweru
+role: Programme Lead
 order: 2
 photo: https://picsum.photos/seed/sc-team2/600/600
-photoVariant: amber
+photoVariant: purplebright
 ---
-Trauma-informed practitioner guiding our confidential support for survivors.
+Trauma-informed practitioner guiding our confidential support for young persons.
