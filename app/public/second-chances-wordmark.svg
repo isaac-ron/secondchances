@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main text: Second Chances -->
+  <text x="200" y="50" font-family="Arial, sans-serif" font-size="42" font-weight="bold" text-anchor="middle" fill="#003D82">
+    SECOND CHANCES
+  </text>
+  
+  <!-- Tagline: smaller text -->
+  <text x="200" y="85" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#A93D8A" letter-spacing="0.3">
+    EMPOWERING CARE LEAVERS IN KENYA TO REDISCOVER HOPE AND REWRITE THEIR FUTURES
+  </text>
+</svg>

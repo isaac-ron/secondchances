@@ -319,8 +319,8 @@ p { margin: 0 0 1.05rem; text-wrap: pretty; }
 /* ---- footer ---- */
 .site-footer { background: #05050f; color: rgba(239,234,221,0.82); padding-block: clamp(3rem, 6vw, 4.5rem) 1.8rem; }
 .foot-grid { display: grid; gap: 2.2rem; grid-template-columns: 1.5fr repeat(3, 1fr); }
-.foot-brand .wordmark { display: flex; flex-direction: column; line-height: 1; color: #fff; }
-.foot-brand .wordmark b { font-family: var(--display); font-weight: 600; font-size: 1.3rem; }
+.foot-brand .wordmark { display: flex; flex-direction: column; line-height: 1; color: #fff; font-family: var(--display); text-align: center; }
+.foot-brand .wordmark b { font-family: var(--display); font-weight: 600; font-size: 1.3rem; letter-spacing: 0.005em; text-transform: uppercase; }
 .foot-brand .wordmark small { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.58rem; color: rgba(239,234,221,0.55); margin-top: 0.25rem; }
 .foot-brand p { margin-top: 1.1rem; max-width: 30ch; color: rgba(239,234,221,0.66); font-size: 0.96rem; }
 .foot-contact { margin-top: 1.2rem; display: grid; gap: 0.4rem; font-size: 0.92rem; }

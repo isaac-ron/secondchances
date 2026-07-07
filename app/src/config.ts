@@ -3,7 +3,7 @@
 
 export const site = {
   name: "Second Chances",
-  tagline: "Supporting Care Leavers",
+  tagline: "Empowering Care Leavers in Kenya to Rediscover Hope and Rewrite their Futures",
   mission: "You were never meant to do this alone.",
   parentOrg: "Child in Family Focus Kenya",
   // Neutral tab titles (shared-device safety): page sets its own short title.
