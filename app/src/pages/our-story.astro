@@ -17,7 +17,7 @@ const team = await Promise.all(
 ---
 <BaseLayout
   title="Our Story"
-  description="Second Chances wasn't built by people looking in. It was built by someone who lived it: Peter Kamau Muthui's journey from care leaver to care reformer."
+  description="Second Chances was not created by people looking into the child care system from the outside. It was born from the lived experiences of care leavers, caregivers and child protection professionals."
   current="our-story"
 >
   <Hero
@@ -27,12 +27,12 @@ const team = await Promise.all(
     alt="A street in Nairobi in the early light, ordinary life moving through it."
   >
     <span class="label" style="color:var(--purplebright-lt)">Built from the inside</span>
-    <h1 class="display" id="story-h" style="margin-top:0.6rem">It was built by someone who <em>lived it.</em></h1>
-    <p class="hero-lead">Second Chances was not built by people looking in. Its story begins with a boy in a Nairobi children's home, waiting for a family that never came.</p>
+    <h1 class="display" id="story-h" style="margin-top:0.6rem">Second Chances was built by people who <em>lived it.</em></h1>
+    <p class="hero-lead">Second Chances was not created by people looking into the child care system from the outside.</p>
   </Hero>
 
-  <!-- Childhood / the wait -->
-  <section aria-labelledby="wait-h">
+  <!-- Origins: lived experience, and Peter's childhood -->
+  <section aria-labelledby="roots-h">
     <article class="split-bleed" data-reveal>
       <div class="media">
         <img src={u(door, 1200)} srcset={`${u(door, 800)} 800w, ${u(door, 1200)} 1200w`}
@@ -41,10 +41,10 @@ const team = await Promise.all(
       </div>
       <div class="copy"><div class="inner">
         <span class="pillar-no"><span class="picon teal" style="--src:url(/icons/nairobi.png)" aria-hidden="true"></span><span class="step">Where it begins</span></span>
-        <h2 class="h3" id="wait-h" style="margin-top:0.2rem">Thirty children. Two house mothers. One long wait.</h2>
-        <p class="lead" style="margin-top:0.9rem">After the loss of his parents, Peter and his five siblings were separated and placed in an orphanage in Nairobi. He remained in a children's home until he was twenty, one of thirty children under the care of two house mothers working in shifts.</p>
-        <p class="pullquote">No one came.</p>
-        <p>He spent years hoping, as so many children in care do, that one day someone would arrive to take him home to a family.</p>
+        <h2 class="h3" id="roots-h" style="margin-top:0.2rem">Second Chances began on the inside.</h2>
+        <p class="lead" style="margin-top:0.9rem">It was born from the lived experiences of care leavers, caregivers and child protection professionals who understood both the value of care and the challenges young people face when leaving it.</p>
+        <p>For Peter K. Muthui, the journey began with the loss of his parents at a tender age, followed by separation from his siblings for two years before being reunited at a Nairobi Children's Home.</p>
+        <p>Like many children in care, he spent years hoping that one day someone would arrive and take him, giving him the gift of family.</p>
       </div></div>
     </article>
   </section>
@@ -53,8 +53,18 @@ const team = await Promise.all(
   <section class="media-band" aria-label="In Peter's words">
     <img src={u(path, 1600)} sizes="100vw" width="1600" height="900" loading="lazy" alt="A path leading toward the morning light over open country." />
     <div class="wrap" data-reveal>
-      <p class="display">I watched a friend leave for a foster family. I told myself, <em>I will be next.</em> I was not next.</p>
+      <p class="display">I watched a friend leave for a foster family. I told myself, <em>&lsquo;I will be next.&rsquo;</em> I was not next.</p>
       <p class="by">Peter, on growing up in care</p>
+    </div>
+  </section>
+
+  <!-- Many paths into care -->
+  <section class="section" aria-labelledby="many-h">
+    <div class="wrap measure">
+      <span class="label">Many paths into care</span>
+      <h2 class="h2" id="many-h" style="margin-top:0.5rem">Peter's story was one of many.</h2>
+      <p class="lead" style="margin-top:1rem">Every young person in care had a different path that brought them there. Some had lost parents, others had experienced abuse, neglect, abandonment or family breakdown.</p>
+      <p>Their stories were different, but many shared the same hopes, uncertainties and challenges of growing up without permanent family care.</p>
     </div>
   </section>
 
@@ -69,28 +79,26 @@ const team = await Promise.all(
       <div class="copy"><div class="inner">
         <span class="label">The return</span>
         <h2 class="h3" id="return-h" style="margin-top:0.4rem">He went back to the place that raised him.</h2>
-        <p class="lead" style="margin-top:0.9rem">That pain never left him. Instead of letting it harden him, it directed him. Peter returned to the very same children's home, first as a social worker, then as a social programmes manager.</p>
-        <p>For a decade he worked from inside the system he had survived, becoming a globally recognised champion of care reform rooted in local realities. He went on to co-found <strong>Child in Family Focus Kenya</strong>, one of the country's most reputable organisations championing family-based care for orphaned and vulnerable children.</p>
+        <p class="lead" style="margin-top:0.9rem">Years later, Peter returned to the same children's home as a social worker and later as a programmes manager.</p>
+        <p>Together with other care leavers, caregivers and child protection professionals, he saw that many young people were leaving care without the support they needed to start independent lives.</p>
       </div></div>
     </article>
   </section>
 
-  <!-- The gap that became Second Chances -->
-  <section class="section" aria-labelledby="gap-h">
-    <div class="wrap measure">
-      <span class="label">The gap that wouldn't close</span>
-      <h2 class="h2" id="gap-h" style="margin-top:0.5rem">A promise, not an institution.</h2>
-      <p class="lead" style="margin-top:1rem">Even from within strong care-reform work, a gap remained. Young people kept arriving: discontinued from sponsorship, aged out, or abandoned by orphanages, having lost everything from shelter to schooling, with nowhere left to turn.</p>
-      <p class="pullquote">He wasn't offering charity. He was offering what he once needed himself.</p>
-      <p>And so Second Chances was born, not as an institution, but as a promise: that no young person leaving care would have to do it alone.</p>
+  <!-- The turn -->
+  <section class="mission" aria-label="The turning point">
+    <div class="wrap" data-reveal>
+      <p class="q">Together, they knew something <em>had to change.</em></p>
     </div>
   </section>
 
-  <!-- Founder voice: purplebright band -->
-  <section class="mission" aria-label="A message from the founder">
-    <div class="wrap" data-reveal>
-      <p class="q">It requires presence. Someone looking a young person in the eye and saying <em>I am not going anywhere.</em></p>
-      <p class="by">Peter Kamau Muthui, Founder</p>
+  <!-- The promise -->
+  <section class="section" aria-labelledby="promise-h">
+    <div class="wrap measure">
+      <span class="label">The promise</span>
+      <h2 class="h2" id="promise-h" style="margin-top:0.5rem">Heal, belong, build.</h2>
+      <p class="lead" style="margin-top:1rem">Second Chances was born from that shared belief and as a promise that no care leaver should have to face adulthood alone.</p>
+      <p>Today, this promise lives on through care leavers, caregivers, partners and supporters working together to ensure every young person gets an opportunity to heal, belong and build a better future for themselves.</p>
     </div>
   </section>
 
